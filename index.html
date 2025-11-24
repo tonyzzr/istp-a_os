@@ -3,20 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISTP-A 行为操作系统 v3 完整手册</title>
+    <title>MBTI 行为操作系统 | Behavioral Operating Systems</title>
     <style>
-        /* ========== Web View Styles ========== */
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --bg-color: #f8f9fa;
-            --text-color: #2c3e50;
-            --border-color: #e1e4e8;
-            --code-bg: #f6f8fa;
-            --highlight-color: #fff3cd;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -25,747 +13,401 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-            line-height: 1.8;
-            color: var(--text-color);
-            background: var(--bg-color);
-            font-size: 16px;
-        }
-
-        /* Navigation Bar */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 2rem;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        nav h1 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        nav .subtitle {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.25rem;
-        }
-
-        /* Sidebar TOC */
-        .toc-sidebar {
-            position: fixed;
-            left: 0;
-            top: 80px;
-            width: 280px;
-            height: calc(100vh - 80px);
-            background: white;
-            border-right: 1px solid var(--border-color);
-            overflow-y: auto;
-            padding: 2rem 1.5rem;
-        }
-
-        .toc-sidebar h2 {
-            font-size: 1rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .toc-sidebar ul {
-            list-style: none;
-        }
-
-        .toc-sidebar li {
-            margin-bottom: 0.5rem;
-        }
-
-        .toc-sidebar a {
-            color: #666;
-            text-decoration: none;
-            display: block;
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-        }
-
-        .toc-sidebar a:hover {
-            background: var(--bg-color);
-            color: var(--secondary-color);
-            transform: translateX(4px);
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 100px 2rem 4rem 320px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Header */
         header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 2.5rem 2rem;
             text-align: center;
-            padding: 3rem 0 4rem;
-            border-bottom: 3px solid var(--secondary-color);
-            margin-bottom: 3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
             font-size: 2.5rem;
-            color: var(--primary-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
             font-weight: 700;
         }
 
-        header .version {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
+        header .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* Main Content */
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+        }
+
+        .panels-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+            gap: 3rem;
+            max-width: 1200px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Panel Cards */
+        .panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .panel:hover::before {
+            opacity: 1;
+        }
+
+        .panel:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-istp {
+            border-color: #3498db;
+        }
+
+        .panel-istp:hover {
+            border-color: #2980b9;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%);
+        }
+
+        .panel-infp {
+            border-color: #88b04b;
+        }
+
+        .panel-infp:hover {
+            border-color: #6b5b95;
+            background: linear-gradient(135deg, rgba(136, 176, 75, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%);
+        }
+
+        .panel-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .panel h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .panel-istp h2 {
+            color: #2c3e50;
+        }
+
+        .panel-infp h2 {
+            color: #6b5b95;
+        }
+
+        .panel-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
             font-weight: 500;
         }
 
-        /* Table of Contents */
-        .toc {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 3rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .toc h2 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .toc ol {
-            list-style-position: inside;
-            counter-reset: toc-counter;
-        }
-
-        .toc li {
-            margin-bottom: 0.75rem;
-            font-size: 1.05rem;
-            counter-increment: toc-counter;
-        }
-
-        .toc li::marker {
-            color: var(--secondary-color);
-            font-weight: 600;
-        }
-
-        /* Sections */
-        section {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
+        .panel-description {
+            font-size: 0.95rem;
+            color: #888;
+            line-height: 1.6;
             margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        h2 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        h4 {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        p {
-            margin-bottom: 1.25rem;
-            text-align: justify;
-        }
-
-        /* Highlight boxes */
-        .highlight-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .highlight-box h3 {
-            color: white;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
-            padding-bottom: 0.5rem;
-        }
-
-        .concept-box {
-            background: #f0f7ff;
-            border-left: 4px solid var(--secondary-color);
-            padding: 1.5rem;
-            border-radius: 6px;
+        .panel-features {
+            text-align: left;
             margin: 1.5rem 0;
+            padding: 0 1rem;
         }
 
-        .concept-box strong {
-            color: var(--secondary-color);
+        .panel-features ul {
+            list-style: none;
         }
 
-        /* Framework diagram */
-        .framework {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            text-align: center;
+        .panel-features li {
+            padding: 0.5rem 0;
+            color: #555;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
         }
 
-        .framework-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .framework-step {
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .framework-arrow {
-            color: var(--secondary-color);
-            font-size: 1.5rem;
+        .panel-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
             font-weight: bold;
         }
 
-        /* Lists */
-        ul, ol {
-            margin-left: 2rem;
-            margin-bottom: 1.25rem;
+        .panel-istp .panel-features li::before {
+            color: #3498db;
         }
 
-        li {
-            margin-bottom: 0.5rem;
+        .panel-infp .panel-features li::before {
+            color: #88b04b;
         }
 
-        /* Case studies */
-        .case-study {
-            background: #fff9f0;
-            border-left: 4px solid #ff9800;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 6px;
+        .panel-cta {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
         }
 
-        .case-study h4 {
-            color: #ff9800;
+        .panel-istp .panel-cta {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .panel-istp .panel-cta:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f6fa8 100%);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .panel-infp .panel-cta {
+            background: linear-gradient(135deg, #88b04b 0%, #6b5b95 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(136, 176, 75, 0.3);
+        }
+
+        .panel-infp .panel-cta:hover {
+            background: linear-gradient(135deg, #6b5b95 0%, #5a4a7f 100%);
+            box-shadow: 0 6px 20px rgba(107, 91, 149, 0.4);
+            transform: translateY(-2px);
         }
 
         /* Footer */
         footer {
-            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
             padding: 2rem;
+            text-align: center;
             color: #666;
             font-size: 0.9rem;
-            margin-top: 4rem;
         }
 
-        /* ========== Print Styles ========== */
-        @media print {
-            body {
-                background: white;
-                font-size: 11pt;
-                line-height: 1.6;
-            }
-
-            nav, .toc-sidebar {
-                display: none;
-            }
-
-            .container {
-                max-width: 100%;
-                padding: 0;
-                margin: 0;
-            }
-
-            section {
-                page-break-inside: avoid;
-                border: none;
-                box-shadow: none;
-                padding: 1rem 0;
-            }
-
-            header {
-                page-break-after: avoid;
-            }
-
-            h2 {
-                page-break-after: avoid;
-                color: black;
-            }
-
-            h3, h4 {
-                page-break-after: avoid;
-                color: black;
-            }
-
-            .highlight-box, .concept-box, .case-study, .framework {
-                page-break-inside: avoid;
-                background: #f5f5f5 !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            a {
-                color: black;
-                text-decoration: none;
-            }
-
-            .toc {
-                page-break-after: always;
-            }
+        footer p {
+            margin: 0.25rem 0;
         }
 
-        /* ========== Responsive ========== */
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .toc-sidebar {
-                display: none;
-            }
-
-            .container {
-                padding: 100px 1rem 2rem;
-            }
-
             header h1 {
                 font-size: 2rem;
             }
 
-            h2 {
-                font-size: 1.5rem;
+            header .subtitle {
+                font-size: 1rem;
             }
 
-            .framework-steps {
-                flex-direction: column;
+            .panels-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
             }
 
-            .framework-arrow {
-                transform: rotate(90deg);
+            .panel {
+                padding: 2rem 1.5rem;
             }
+
+            .panel-icon {
+                font-size: 3rem;
+            }
+
+            .panel h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .panel {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .panel:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .panel:nth-child(2) {
+            animation-delay: 0.2s;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <h1>ISTP-A 行为操作系统</h1>
-        <div class="subtitle">Behavioral Operating System for ISTP-A · Version 3</div>
-    </nav>
-
-    <aside class="toc-sidebar">
-        <h2>目录导航</h2>
-        <ul>
-            <li><a href="#section1">1. 引言</a></li>
-            <li><a href="#section2">2. 核心认知模型</a></li>
-            <li><a href="#section3">3. 行为操作系统框架</a></li>
-            <li><a href="#section4">4. 系统核心原则</a></li>
-            <li><a href="#section5">5. 方法论论证</a></li>
-            <li><a href="#section6">6. 多任务并行管理</a></li>
-            <li><a href="#section7">7. 案例：学术论文写作</a></li>
-            <li><a href="#section8">8. 案例：代码框架构建</a></li>
-            <li><a href="#section9">9. 案例：求职</a></li>
-            <li><a href="#section10">10. 案例：健身系统</a></li>
-            <li><a href="#section11">11. 案例：PhD Thesis</a></li>
-            <li><a href="#section12">12. 案例：EB1A/O1 申请</a></li>
-        </ul>
-    </aside>
+    <header>
+        <h1>MBTI 行为操作系统</h1>
+        <div class="subtitle">为不同人格类型量身定制的生产力框架</div>
+    </header>
 
     <div class="container">
-        <header>
-            <h1>ISTP-A 行为操作系统</h1>
-            <div class="version">完整手册 v3</div>
-        </header>
-
-        <div class="toc">
-            <h2>目录</h2>
-            <ol>
-                <li>引言：为什么 ISTP-A 需要一套行为操作系统</li>
-                <li>核心认知模型：Ti、Se、Te 的对立统一与协同</li>
-                <li>行为操作系统的总体框架：从 Baseline 到 Snapshot</li>
-                <li>系统的核心原则：行动优先、边界明确、结构轻量</li>
-                <li>方法论论证与结语：ISTP-A 的长期复利路径</li>
-                <li>多任务并行管理（Priority OS 作为指导原则）</li>
-                <li>案例一：学术论文写作（CS Conference Paper）</li>
-                <li>案例二：大型代码框架构建（实验框架 / SaaS MVP）</li>
-                <li>案例三：求职（MLE / AE / Research Engineer）</li>
-                <li>案例四：健身（Fitness System）</li>
-                <li>案例五：PhD Thesis（大型长期项目）</li>
-                <li>案例六：EB1A/O1 移民申请文书</li>
-            </ol>
-        </div>
-
-        <section id="section1">
-            <h2>1. 引言：为什么 ISTP-A 需要一套行为操作系统</h2>
-
-            <p>ISTP-A 的优势往往在于行动迅速、反应敏捷、逻辑清晰、学习速度快，也擅长解决具体问题。你通常能够在实际情境中快速理解系统的运行方式，并通过动手尝试找到高效的解决方案。然而，ISTP-A 天生不擅长长期规划，不喜欢被时间表束缚，容易因为 Ti 过度分析而迟迟无法开始一个项目，也容易因为 Se 追求短期体验而在中途中断长期任务。</p>
-
-            <p>更重要的是，ISTP-A 的 Te 虽然具备很强的执行爆发力，但这种爆发往往是阶段性的、情境驱动的，需要明确、具体的入口才能被激活。当任务模糊、过于抽象或缺乏即时反馈时，Ti 会接管，并尝试在脑内"推演出最佳路线"，结果反而把行动推迟了。</p>
-
-            <div class="concept-box">
-                <p><strong>ISTP-A 面对复杂、长期任务时的典型模式：</strong></p>
-                <ul>
-                    <li>起初理解很快，但迟迟不开始</li>
-                    <li>一旦开始，可以高效爆发一段时间</li>
-                    <li>遇到不确定或结构模糊的部分，就会卡住</li>
-                    <li>中断后再想继续，成本很高，甚至干脆不再碰</li>
-                    <li>同时进行多个项目时，Ti 反复扫描全局，越想越乱</li>
-                </ul>
-            </div>
-
-            <p>这些现象并非能力不足，而是你原本的认知优势与外在任务形态之间存在结构不匹配。绝大多数任务管理、时间管理、生产力系统，都是围绕高度外向、长期规划型人格设计的，并没有考虑 ISTP 的认知风格。</p>
-
-            <div class="highlight-box">
-                <h3>行为操作系统的核心理念</h3>
-                <p>本手册提出的"ISTP-A 行为操作系统（Behavioral Operating System）"，就是为了把你的天赋使用方式重新整理成一套结构化、可复用、可迁移的模板。它不强迫你变成另一个类型，而是让你在保持自由度的前提下，获得更稳定、更可预测的长期输出。</p>
-            </div>
-        </section>
-
-        <section id="section2">
-            <h2>2. 核心认知模型：Ti、Se、Te 的对立统一与协同</h2>
-
-            <p>ISTP-A 的认知核心是 <strong>Ti（内向思考）</strong>，辅以 <strong>Se（外向感知）</strong>，并在成熟之后发展出较为可用的 <strong>Te（外向思考）</strong>。这三者之间不是平行工作，而是一种动态循环。</p>
-
-            <h3>Ti - 内向思考</h3>
-            <p>Ti 倾向于向内在逻辑世界深潜。它喜欢拆解系统结构、寻找最优解、保证内部一致性。Ti 让你能够在较短时间内理解一个系统的核心原理，并发现许多别人注意不到的结构问题。但 Ti 的弱点在于，它在面对不完整信息或庞大结构时，容易陷入无休止的推演和追求完美。当 Ti 一直试图"想清楚一切再行动"时，行动就被拖延了。</p>
-
-            <h3>Se - 外向感知</h3>
-            <p>Se 则是 ISTP 行动力的直接引擎。Se 关注当下的现实与感官体验。通过看、摸、试、做，你会迅速进入状态。你往往不是通过"想明白之后再做"，而是在"先做一点看看会发生什么"的过程中理解事物。当任务可以具体被操作、可以在短时间内看到反馈时，Se 会极大提升你的能量与专注度。</p>
-
-            <h3>Te - 外向思考</h3>
-            <p>Te 是负责外向执行和结构化输出的功能。当一个任务已经有了足够清晰的结构、有明确的入口、有可以观察的输出指标时，Te 会非常高效地把事情一步步做完。但在 ISTP 的功能序列里，Te 并不是自动常驻的，它需要被合适地"唤醒"。如果任务停留在抽象层面，或者结构尚未成型，Te 往往不会自动启动。</p>
-
-            <div class="highlight-box">
-                <h3>高效工作模式：Ti-Se-Te 循环</h3>
-                <p>ISTP-A 的高效工作模式，是 Ti、Se、Te 的循环：<strong>Ti 提供结构感和关键点判断，Se 通过具体行动和即时反馈驱动投入感，Te 负责把模块化的任务推进到完成，形成可见成果。</strong></p>
-                <p>如果任务设计破坏了这一循环，例如要求你长期停留在纯抽象规划，或者要求你在没有清晰结构的前提下硬执行，那么你很可能会在拖延与爆发之间来回反复。</p>
-            </div>
-        </section>
-
-        <section id="section3">
-            <h2>3. 行为操作系统的总体框架：从 Baseline 到 Snapshot</h2>
-
-            <p>ISTP-A 行为操作系统（BOS）用一个统一框架来处理各种任务，无论是写论文、做实验框架、求职、健身、写 thesis、准备移民材料，还是并行处理多项目。这个框架由几个固定环节组成：</p>
-
-            <div class="framework">
-                <h3>BOS 核心框架</h3>
-                <div class="framework-steps">
-                    <div class="framework-step">Baseline</div>
-                    <div class="framework-arrow">→</div>
-                    <div class="framework-step">Structure</div>
-                    <div class="framework-arrow">→</div>
-                    <div class="framework-step">Modules</div>
-                    <div class="framework-arrow">→</div>
-                    <div class="framework-step">Pipeline</div>
-                    <div class="framework-arrow">→</div>
-                    <div class="framework-step">Entry Point</div>
-                    <div class="framework-arrow">→</div>
-                    <div class="framework-step">Snapshot</div>
+        <div class="panels-wrapper">
+            <!-- ISTP-A Panel -->
+            <div class="panel panel-istp" onclick="window.location.href='istp.html'">
+                <span class="panel-icon">🔧</span>
+                <h2>ISTP-A</h2>
+                <div class="panel-subtitle">行为操作系统 v3</div>
+                <div class="panel-description">
+                    专为 ISTP-A 设计的执行系统，将 Ti-Se-Te 循环转化为高效行动力
                 </div>
+                <div class="panel-features">
+                    <ul>
+                        <li>Baseline → Structure → Modules</li>
+                        <li>Pipeline → Entry Point → Snapshot</li>
+                        <li>行动优先 · 边界明确 · 结构轻量</li>
+                        <li>6 个实战案例完整演示</li>
+                    </ul>
+                </div>
+                <a href="istp.html" class="panel-cta">进入系统 →</a>
             </div>
 
-            <h3>Baseline - 让任务跑起来</h3>
-            <div class="concept-box">
-                <p><strong>Baseline</strong> 是一切的起点。它的含义是"让任务以最低标准跑起来"，而不是"把任务一次性做好"。</p>
-                <ul>
-                    <li>论文：一个能编译的骨架 PDF</li>
-                    <li>Codebase：能在命令行跑通 toy example 的最小项目</li>
-                    <li>EB1A/O1：有结构的大纲和初步文书占位</li>
-                    <li>健身：可以随时做的五分钟动作</li>
-                </ul>
-                <p>Baseline 的存在，使任务从抽象变成具体，从"想做"变成"已经开始了"。</p>
+            <!-- INFP Panel -->
+            <div class="panel panel-infp" onclick="window.location.href='infp_os.html'">
+                <span class="panel-icon">🌸</span>
+                <h2>INFP</h2>
+                <div class="panel-subtitle">柔性执行蓝图</div>
+                <div class="panel-description">
+                    Fi-Ne-Si-Te-Ti 的温柔协作系统，让意义驱动行动
+                </div>
+                <div class="panel-features">
+                    <ul>
+                        <li>Meaning Baseline → Flow Pipeline</li>
+                        <li>情绪安全模块 · 轻入口设计</li>
+                        <li>高能/中能/低能日节奏管理</li>
+                        <li>面试 · 实验 · Coding 全场景</li>
+                    </ul>
+                </div>
+                <a href="infp_os.html" class="panel-cta">进入系统 →</a>
             </div>
-
-            <h3>Structure - 建立骨架</h3>
-            <p>Structure 是建立任务骨架的阶段。它不追求精美的架构设计，而是为任务建立清晰的边界与分区。可以是章节目录、文件结构、模块树、配置文件分布或职责划分。只要你知道"这一块内容放在哪个文件、哪一节或哪一个模块里"，Ti 就会获得安全感，不再需要不断推翻整体。</p>
-
-            <h3>Modules - 可执行的小块</h3>
-            <p>Modules 是操作层的主角。所有任务都需要被拆解成可独立完成的小块。每个模块应当小到可以在二十到四十分钟内推进一次，大到足以构成实际前进。例如"写一段 related work"、"添加一个新模型实现"、"跑一组 baseline 实验"、"写一封推荐信用的一个段落"、"完成一次 push 训练"。模块是 Se 的行动入口，也是 Te 的执行单位。</p>
-
-            <h3>Pipeline - 稳定节奏</h3>
-            <p>Pipeline 则定义了你如何以稳定节奏推进这些模块。与复杂的时间管理系统不同，ISTP 的 Pipeline 极为轻量：每周为最重要的项目推进若干模块，每天执行一个或两个小模块即可。你不需要每天处理所有项目，只需要每周保证每个核心项目至少被推进一次。</p>
-
-            <h3>Entry Point - 切入位置</h3>
-            <p>Entry Point 是每次重新开始一个任务时的"切入位置"。它通常是：下一次从哪行代码改起，从哪段文字写起，从哪张图开始画。Entry Point 越具体，越能降低启动阻力。</p>
-
-            <h3>Snapshot - 上下文快照</h3>
-            <p>Snapshot 是你在结束工作时留下的"上下文快照"。它由两部分组成：今天做到哪里了，以及下一次具体从哪一步开始。Snapshot 的存在，避免你在每次回到任务时重新扫描全局，从而节省大量的认知开销。</p>
-
-            <div class="highlight-box">
-                <h3>可复用的闭环</h3>
-                <p>这六个环节构成一个可以反复使用的闭环。任何任务，都可以从 Baseline 启动，经 Structure 明确边界，在 Modules 中被拆解，在 Pipeline 中节奏化执行，通过 Entry Point 再次启动，并依靠 Snapshot 承接上下文。</p>
-            </div>
-        </section>
-
-        <section id="section4">
-            <h2>4. 系统的核心原则：行动优先、边界明确、结构轻量</h2>
-
-            <p>这个操作系统建立在三个核心原则之上。</p>
-
-            <h3>原则一：行动优先</h3>
-            <div class="concept-box">
-                <p>ISTP 的动力来源并不在于制定远期规划，而在于实际开始做点什么。当任务被拆解为清晰的小模块时，你更容易在没有太多心理阻力的情况下启动。</p>
-                <ul>
-                    <li>与其思考"我接下来三个月的训练计划是什么"，不如直接做十个俯卧撑</li>
-                    <li>与其思考"论文最终要写成什么状态"，不如先写一个小节的草稿</li>
-                </ul>
-            </div>
-
-            <h3>原则二：边界明确</h3>
-            <p>Ti 需要知道"这一块到底属于哪里"。否则，它就会在全局结构中反复扫视，试图重新定义边界。通过建立章节与模块的结构，你为 Ti 提供了一个容器，使其可以在有限空间内优化，而不是在无限可能中漂浮。边界明确并不意味着僵化，而是为创造性行动划定舞台。</p>
-
-            <h3>原则三：结构轻量</h3>
-            <p>ISTP 非常敏锐，一旦感到结构过重、系统难以维护，就会产生强烈的反感与回避。一个好的行为操作系统应该提供足够的结构感，但不会变成额外负担。你可以把它想象成"一个松散但稳定的骨架"，而不是一个压制性的流程模板。</p>
-
-            <div class="highlight-box">
-                <h3>核心目标</h3>
-                <p>这三条原则共同指向一个目标：<strong>让你以最小的心理负担获得最持续的行动输出。</strong></p>
-            </div>
-        </section>
-
-        <section id="section5">
-            <h2>5. 方法论论证与结语：ISTP-A 的长期复利路径</h2>
-
-            <p>本系统背后的核心逻辑，是严格按照 ISTP 的认知天性构建的。ISTP 的执行力并非取决于外在强迫或宏大目标，而取决于"是否能看到一个立即可行动的入口"。当任务被拆成模块、入口被明确指出、边界被清晰划定之后，Ti 会停止自我阻挡，Se 会被具体行动所吸引，Te 也就有了发挥的空间。</p>
-
-            <h3>为 Ti 提供稳定边界</h3>
-            <p>Ti 的优势是理解与结构化，但其弱点是在结构不完整时不断重启推演。Baseline 与 Structure 两者共同为 Ti 提供稳定边界，使它可以将精力用于局部优化，而不是无休止地修正整体框架。</p>
-
-            <h3>为 Se 提供即时反馈</h3>
-            <p>Se 的动力来自即时反馈，而 Modules 与 Pipeline 则持续提供这种反馈。每完成一个模块，你都会在体感上获得"有东西在推进"的确认。</p>
-
-            <h3>让 Te 面对可执行的小块</h3>
-            <p>Te 在明确的结构与路径下才能爆发。当你知道"今天只需要完成这个小模块"时，Te 乐于上场；而当任务被表述为"完成一篇论文、写完整套文书或整理所有代码"，Te 则很难启动。整个 BOS 的设计，就是为了让 Te 永远面对的是"可执行的小块"，而不是抽象的庞然大物。</p>
-
-            <div class="highlight-box">
-                <h3>长期复利式成长</h3>
-                <p>通过不断循环 Baseline → Structure → Modules → Pipeline → Snapshot，ISTP 可以在不牺牲自由度的前提下，获得长期复利式的成长。你不需要把自己变成某种高度计划性的角色，只需要让每一个任务都符合这套模式。</p>
-                <p>从更长的时间尺度来看，这不仅仅是一套生产力系统，而是一种适合 ISTP 本性的生活方式和工作哲学。它既尊重你对自由与弹性的需求，又为你的长期目标提供了稳态推进的结构，让天赋真正转化为成果。</p>
-            </div>
-        </section>
-
-        <section id="section6">
-            <h2>6. 多任务并行管理（Priority OS 作为指导原则）</h2>
-
-            <p>多任务并行是 ISTP 最容易被压垮的情境之一。因为 Ti 会不断扫描所有任务，试图找到"最优推进路径"，结果往往是：想得越多，越不知道从哪里开始。与此同时，Se 无法获得明确的可行动起点，Te 也无从发挥，整体系统进入停滞。</p>
-
-            <p>为了解决这一问题，多任务管理在 ISTP-A 的世界里，不应被理解为"同时推进很多任务"，而应被看作"在某个时刻只做一个小模块，但在更长周期内轮流推进多个项目"。这一点需要由一个专门的调度系统来承载，这就是 <strong>Priority OS</strong>。</p>
-
-            <h3>Priority OS 五维评分系统</h3>
-            <div class="concept-box">
-                <p>Priority OS 通过五个维度为每个项目评分：</p>
-                <ul>
-                    <li><strong>不作为的代价（Cost of Inaction）</strong> - 如果这个项目再拖延，会不会带来明显损失（deadline、签证、毕业、健康、收入等）</li>
-                    <li><strong>系统依赖程度（Dependency）</strong> - 这个项目是否是其他任务的前置条件（例如论文的 Baseline 是后续所有实验与写作的基础）</li>
-                    <li><strong>回报或杠杆（Return / Leverage）</strong> - 完成这个项目是否会为未来解锁更多选项或能力</li>
-                    <li><strong>可见反馈（Visibility）</strong> - 推进这个项目时，你是否能很快看到成果，从而获得 Se 的动力</li>
-                    <li><strong>启动阻力（Friction）</strong> - 你现在是否容易开始，还是一想到就感觉头大（反向指标）</li>
-                </ul>
-            </div>
-
-            <p>通过简单的直觉评分，你可以大致排出项目优先顺序。Priority OS 的目标不是精确计算，而是为 Ti 提供一个足够合理的排序，使它不必一直扫描所有任务。</p>
-
-            <h3>实践原则</h3>
-            <p>实践上，你只需在每周重点推进优先级最高的一到两个项目，对其余项目进行低频维护即可。</p>
-
-            <p><strong>Snapshot 在这里尤为关键。</strong>只要你在每个项目中都留下清晰的 Snapshot，说明上次做到哪里、下一次从哪里开始，那么你就可以在项目之间无痛切换，不需要重启全局推演。这样，多项目环境不再是一个巨大的心理负担，而是一个被模块化调度支撑的系统。</p>
-        </section>
-
-        <section id="section7">
-            <h2>7. 案例一：学术论文写作（CS Conference Paper）</h2>
-
-            <p>撰写学术论文对于 ISTP 来说最大的挑战在于结构庞大、前置不确定性高、需要长期推进且短期内很难看到最终成果。当 Ti 面对未定义的全局结构时，容易陷入不断重写大纲与反复推翻自己设想的循环；而 Se 又无法从中找到明确可操作的起点。</p>
-
-            <div class="case-study">
-                <h4>Baseline：丑但完整的论文骨架</h4>
-                <p>在 ISTP-A 的行为操作系统中，论文写作必须从 Baseline 开始，而不是从"写得漂亮"开始。Baseline 是一份"丑但完整"的论文骨架。它可以只是一个 LaTeX 模板，包含 Abstract、Introduction、Related Work、Method、Experiments、Results、Discussion 与 Conclusion，每个部分只写一句话描述意图即可。同时，你可以预留实验结果的占位图、伪代码的位置与公式位置。只要骨架能编译成 PDF，你就已经解除了最关键的心理阻力。</p>
-            </div>
-
-            <h3>Structure：细化章节结构</h3>
-            <p>接下来进入 Structure 阶段，你可以细化每个章节的内部结构。例如：</p>
-            <ul>
-                <li><strong>Introduction</strong> 拆为：问题背景、现有方法的不足、你的核心想法、贡献列表</li>
-                <li><strong>Method</strong> 拆为：整体框架、子模块、关键设计、理论推导或直觉说明</li>
-                <li><strong>Experiments</strong> 拆为：数据集、评价指标、对比方法、主实验、消融实验与可视化</li>
-            </ul>
-            <p>结构不需要完美，但必须存在。</p>
-
-            <h3>Modules：可执行的小任务</h3>
-            <p>Modules 阶段中，你将论文拆解为一个个可执行的小任务。一个模块可以是"写一段 Related Work"，也可以是"完成主实验表格的填充"或"画出方法的框架图"。这些模块都可以在相对短的时间里推进，从而为 Se 提供即时成就感。</p>
-
-            <h3>Pipeline：每周推进节奏</h3>
-            <p>Pipeline 规定了你推进论文的节奏。与其设定每天写若干页文字，不如设定每周完成两个到三个模块。这样，你既不会被整体任务压垮，也能在数周到数月的时间里持续看到论文逐渐成型。</p>
-
-            <h3>Snapshot：快速恢复状态</h3>
-            <p>Snapshot 则在每次写作结束时记录：今天写到哪一段、下一次从哪一句开始，这样你在中断几天之后，也能迅速恢复写作状态。</p>
-        </section>
-
-        <section id="section8">
-            <h2>8. 案例二：大型代码框架构建（实验框架 / SaaS MVP）</h2>
-
-            <p>大型代码框架往往让 ISTP 陷入工程完美主义的陷阱。Ti 会不断推翻架构，试图寻找最优方案，从而导致迟迟无法跑出第一版。然而对于 ISTP-A 来说，一个框架最重要的不是完美，而是"能跑"和"能改"。</p>
-
-            <div class="case-study">
-                <h4>Baseline：最小工作流</h4>
-                <p>因此，构建代码框架同样需要从 Baseline 开始。Baseline 只需要实现最小工作流，例如一个 toy dataset、一个简单模型、一个最小训练循环。只要能在命令行中跑通，即使结构丑陋，它已经完成 ISTP 最关键的一步：启动势能。</p>
-            </div>
-
-            <h3>Structure：规划目录结构</h3>
-            <p>在 Structure 阶段，你才规划目录结构，例如 models、datasets、trainers、utils 与 scripts。每个目录的存在都应有其"边界意义"，而不是提前填入复杂逻辑。在这一阶段，你只建立骨架，不写抽象基类、不优化性能、不设计全局模式。结构越轻，你越容易进入下一步。</p>
-
-            <h3>Modules：独立开发功能</h3>
-            <p>Modules 阶段则让每个功能被独立开发。以模型为例，你可以编写单独的 simple_cnn.py 或 transformer.py，并在 Jupyter Notebook 内自测模型的 forward 行为。这些模块一旦自测通过，才进入系统层的 registry。模块独立、边界明确，是 ISTP 避免系统混乱的关键。</p>
-
-            <h3>Pipeline：配置驱动系统</h3>
-            <p>Pipeline 最后通过 config 文件驱动整个系统，使"添加一次实验"变成"添加一份配置"。你不需要为每个实验写新的脚本，而只要复制修改一份配置文件。</p>
-
-            <h3>Snapshot：避免重新分析</h3>
-            <p>Snapshot 则确保你下一次能直接从上一份 config 或上一段 trainer 逻辑继续推进，避免重新分析整个框架。</p>
-        </section>
-
-        <section id="section9">
-            <h2>9. 案例三：求职（MLE / AE / Research Engineer）</h2>
-
-            <p>求职过程本质上是一个多阶段、多模块的系统工程，而非一次性的行动。ISTP-A 在求职中容易出现两个问题：第一是 Ti 想要准备得特别完善才愿意开始；第二是 Se 因缺乏即时反馈而丢失动力。因此，在求职中，Baseline 的重要性比很多任务都更高。</p>
-
-            <div class="case-study">
-                <h4>Baseline：可投递的简历</h4>
-                <p>求职的 Baseline 通常包括一个最基础的可投递简历，即便它并不完美，也应能够在五分钟内修改并投出。一旦简历基本可用，你就自然跨过了 Ti 的高门槛审查，同时也让 Se 感受到"这件事已经开始流动"。此时你已经从"求职还没开始"变成"求职系统已上线"。</p>
-            </div>
-
-            <h3>Structure：明确求职方向</h3>
-            <p>Structure 阶段对应于对求职方向的明确化。这并不是要求你确定一生的职业，而是建立一个求职配置，例如 MLE、AE 或 Research Engineer 的技能要求、岗位类型与目标公司范围。你可以列出目标城市、公司规模（大厂 / 中型 / 初创）、技术栈偏好等。Structure 的意义并非限制，而是让 Ti 不会在无边界的可能性空间里迷失。</p>
-
-            <h3>Modules：技能与准备模块</h3>
-            <p>Modules 则包括技能补全模块、项目模块、STAR 行为面试模块、投递模块与 mock 面试模块等。这些模块都是具体的、可在二十到四十分钟内推进的小任务，例如：</p>
-            <ul>
-                <li>"把一个项目写成 STAR 格式"</li>
-                <li>"实现一个小型 ML demo"</li>
-                <li>"复习一个 system design 模块"</li>
-                <li>"给一个岗位投五份简历"</li>
-            </ul>
-            <p>每一个模块都有明确的入口点，降低了切入难度。</p>
-
-            <h3>Pipeline：每周推进核心模块</h3>
-            <p>Pipeline 则是每周推进两个核心模块，例如"改进主项目叙述"和"准备一次 mock 面试"。你不必每天都在求职上投入大量时间，但只要每周持续推进，整个求职系统就始终在运转。</p>
-
-            <h3>Snapshot：记录下一步行动</h3>
-            <p>Snapshot 让你永远知道下一次改简历应该从哪一段落开始，而不需要重新校阅整份文档。</p>
-        </section>
-
-        <section id="section10">
-            <h2>10. 案例四：健身（Fitness System）</h2>
-
-            <p>健身看似与其他知识工作不同，但对 ISTP-A 来说，健身最重要的机制依然来自 Se 的即时反馈与 Te 的可执行性。ISTP 不适合依赖刚性的训练计划，也不适合每天都做同一套例行公事。健身应被视为由一组可调用模块构成的系统。</p>
-
-            <div class="case-study">
-                <h4>Baseline：五分钟动作</h4>
-                <p>健身的 Baseline 是一个可执行的五分钟动作，例如十个俯卧撑、十五个深蹲或一分钟跑步。这些动作的目的不是训练效果本身，而是激活 Se，从而消除任务启动的阻力。只要开始做了，哪怕是最小动作，你就有更高的概率自然延展成完整模块。</p>
-            </div>
-
-            <h3>Structure：训练模块分类</h3>
-            <p>Structure 对应于训练模块的分类，包括 Push、Pull、Legs、Core、Cardio 与 Mobility。明确这些类别即可，无需提前设计具体的训练组合或周期化计划。结构越轻，灵活性越高，你越不会出于反感而拒绝执行。</p>
-
-            <h3>Modules：独立训练单元</h3>
-            <p>Modules 则是每个训练模块本身，例如一个包含三个动作、持续十五分钟的 Push 模块，或一组十分钟的核心训练。每个模块都独立，不依赖于连续日程，因此你可以在任何一天选择一个模块执行，不需要计算"今天是不是腿日"。模块越短、越具体，越容易执行，越 match ISTP 的行动风格。</p>
-
-            <h3>Pipeline：每周完成 3-5 个模块</h3>
-            <p>Pipeline 则要求你每周完成三到五个模块。无论是哪一天，只要你挑一个模块完成，系统就处于活跃状态，不会完全停摆。</p>
-
-            <h3>Snapshot：保持方向感</h3>
-            <p>Snapshot 则保持对近期重点的轻量化记录，例如"目前重点练 Pull；下一次从辅助引体五次开始"。有了 Snapshot，你不会因为中断几天或一周，就完全失去方向感。</p>
-        </section>
-
-        <section id="section11">
-            <h2>11. 案例五：PhD Thesis（大型长期项目）</h2>
-
-            <p>博士论文是一个典型的长期、巨大且结构复杂的任务，因此非常容易触发 ISTP 的分析瘫痪。Ti 会不断推翻论文结构、怀疑自己的贡献、反复修正框架，而缺乏即时反馈的特性又会使 Se 无法提供动力。因此，写论文最重要的不是思考，而是尽可能快地完成一个 Baseline。</p>
-
-            <div class="case-study">
-                <h4>Baseline：能编译的 Thesis Skeleton</h4>
-                <p>Baseline 是一份能编译的 thesis skeleton，它应包含标题、章节结构、占位图片、空白小节与最小的参考文献文件。哪怕内容仍是空白，只要 PDF 能够生成，就已经产生了强大的心理启动效应。这代表"论文已经存在"，而不是"论文还只是一个念头"。</p>
-            </div>
-
-            <h3>Structure：定义子结构</h3>
-            <p>Structure 阶段，你开始为每个章节定义子结构。例如：</p>
-            <ul>
-                <li><strong>Method 章节</strong>：问题定义、总体方法框架、子模块、理论分析或直觉解释、伪代码</li>
-                <li><strong>Results 章节</strong>：实验设置、主结果、对比分析、消融实验与可视化</li>
-                <li><strong>Introduction</strong>：背景、现状不足、你的思路与贡献列表</li>
-            </ul>
-
-            <h3>Modules：最小任务单元</h3>
-            <p>Modules 允许你每次只处理一个最小任务，例如"画出方法图的初稿"、"撰写 Related Work 的两段"、"写实验设置部分"或"补充一个表格的说明文字"。一个模块小到可以在三十分钟内完成，也能为 Se 提供即时成就感。</p>
-
-            <h3>Pipeline：每周 2-3 个模块</h3>
-            <p>Pipeline 让你以每周两到三个模块的节奏推进论文，同时避免任务在你心中不断膨胀。</p>
-
-            <h3>Snapshot：标记下一次入口</h3>
-            <p>Snapshot 则标记下一次的入口，例如"继续完善推导第二步的解释"或"在 4.2 小节中补上消融实验结果"。这让你能在任何一周快速恢复写作，而不会因为中断而重启焦虑与自我怀疑。</p>
-        </section>
-
-        <section id="section12">
-            <h2>12. 案例六：EB1A/O1 移民申请文书</h2>
-
-            <p>EB1A 或 O1 的文书任务复杂、材料繁多、跨越多个文档，并且需要同时管理推荐信、Exhibits、Petition Letter 与时间线。对于 ISTP-A，这类任务最危险的部分是庞大与模糊：Ti 容易因为边界不清而陷入重写结构、搜集材料却不整合的循环。因此，文书写作格外需要遵循 BOS 的结构。</p>
-
-            <div class="case-study">
-                <h4>Baseline：粗略大纲与模板</h4>
-                <p>Baseline 在此情境中是一份 Petition Letter 的粗略大纲、一份推荐信的模板，以及一份 Exhibits 列表。这些文档都可以是极其粗糙的占位内容，只要它们确实存在，就会立即降低任务的不确定性，让整个申请从"没开始"变成"已经上线"。</p>
-            </div>
-
-            <h3>Structure：明确组织方式</h3>
-            <p>Structure 阶段进一步明确各 Criterion、Exhibit 与推荐信段落的组织方式。例如：</p>
-            <ul>
-                <li>为每个 Criterion 明确三到四个子节：标准条文、你的对应事项、证据集合与影响说明</li>
-                <li>为推荐信设定固定段落模板（介绍、关系、成就、影响与总结），避免每封信从零开始构思</li>
-            </ul>
-
-            <h3>Modules：可短时完成的任务</h3>
-            <p>Modules 包括补写一个 Criterion 的某一段、编写一份推荐信草稿、整理一项证据、准备一个 Exhibit 页面的说明、或是完善时间线中的某一段经历。这些模块都可以在短时间内完成，非常适合利用碎片时间推进。</p>
-
-            <h3>Pipeline：固定推进节奏</h3>
-            <p>Pipeline 将文书撰写变成每周的固定推进节奏，例如"本周完成 Criterion 2 的一段与一项 Exhibit 的描述，下周完善 Criterion 3 的结构"等。</p>
-
-            <h3>Snapshot：明确下一步</h3>
-            <p>Snapshot 确保你始终知道下一次应该从哪一段写起、哪一封推荐信需要继续润色，而不是每次打开资料都要重新思考整体布局。</p>
-        </section>
-
-        <footer>
-            <p>—— 结束 ——</p>
-            <p>ISTP-A 行为操作系统 v3 · 完整手册</p>
-        </footer>
+        </div>
     </div>
+
+    <footer>
+        <p><strong>Behavioral Operating Systems</strong></p>
+        <p>基于认知功能理论的个性化生产力方法论</p>
+        <div class="footer-links">
+            <a href="istp.html">ISTP-A 系统</a>
+            <a href="infp_os.html">INFP 系统</a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">
+            © 2025 · 为每一种认知模式找到最适合的道路
+        </p>
+    </footer>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '1') {
+                window.location.href = 'istp.html';
+            } else if (e.key === '2') {
+                window.location.href = 'infp_os.html';
+            }
+        });
+
+        // Add subtle parallax effect on mouse move
+        document.addEventListener('mousemove', function(e) {
+            const panels = document.querySelectorAll('.panel');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            panels.forEach(panel => {
+                const speed = 5;
+                const xOffset = (x - 0.5) * speed;
+                const yOffset = (y - 0.5) * speed;
+
+                panel.style.transform = `perspective(1000px) rotateY(${xOffset}deg) rotateX(${-yOffset}deg)`;
+            });
+        });
+
+        // Reset transform on mouse leave
+        document.body.addEventListener('mouseleave', function() {
+            const panels = document.querySelectorAll('.panel');
+            panels.forEach(panel => {
+                panel.style.transform = '';
+            });
+        });
+    </script>
 </body>
 </html>

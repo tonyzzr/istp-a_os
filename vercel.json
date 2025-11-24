@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/istp",
+      "dest": "/istp.html"
+    },
+    {
+      "src": "/infp",
+      "dest": "/infp_os.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
