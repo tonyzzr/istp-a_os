@@ -1,0 +1,42 @@
+{
+  "name": "istp-a-bos-manual-mdx",
+  "version": "3.0.0",
+  "description": "ISTP-A Behavioral Operating System Manual in MDX format",
+  "main": "index.mdx",
+  "keywords": [
+    "ISTP-A",
+    "productivity",
+    "behavioral-operating-system",
+    "mdx",
+    "documentation",
+    "mbti",
+    "cognitive-functions"
+  ],
+  "author": "ISTP-A BOS",
+  "license": "MIT",
+  "peerDependencies": {
+    "@mdx-js/react": "^2.0.0 || ^3.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0"
+  },
+  "files": [
+    "index.mdx",
+    "components/",
+    "sections/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/istp-a-os"
+  },
+  "scripts": {
+    "validate": "echo 'MDX validation - install framework-specific tools to validate'"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

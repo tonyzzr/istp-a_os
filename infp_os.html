@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFP 行为操作系统完整版</title>
+    <style>
+        /* ========== Web View Styles ========== */
+        :root {
+            --primary-color: #6b5b95;
+            --secondary-color: #88b04b;
+            --accent-color: #d65076;
+            --bg-color: #f8f5f2;
+            --text-color: #2c3e50;
+            --border-color: #e1ddd8;
+            --code-bg: #faf8f5;
+            --highlight-color: #fff3e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: var(--bg-color);
+            font-size: 16px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        nav .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        /* Sidebar TOC */
+        .toc-sidebar {
+            position: fixed;
+            left: 0;
+            top: 80px;
+            width: 280px;
+            height: calc(100vh - 80px);
+            background: white;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .toc-sidebar h2 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .toc-sidebar ul {
+            list-style: none;
+        }
+
+        .toc-sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-sidebar a {
+            color: #666;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .toc-sidebar a:hover {
+            background: var(--bg-color);
+            color: var(--secondary-color);
+            transform: translateX(4px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 2rem 4rem 320px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 3rem 0 4rem;
+            border-bottom: 3px solid var(--secondary-color);
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header .version {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .toc h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .toc ol {
+            list-style-position: inside;
+            counter-reset: toc-counter;
+        }
+
+        .toc li {
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+            counter-increment: toc-counter;
+        }
+
+        .toc li::marker {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            text-align: justify;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #88b04b 0%, #6b5b95 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .concept-box {
+            background: #f5f0ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+        }
+
+        .concept-box strong {
+            color: var(--primary-color);
+        }
+
+        /* Framework diagram */
+        .framework {
+            background: linear-gradient(135deg, #faf8f5 0%, #e8dfe0 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .framework-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .framework-step {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .framework-arrow {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Case studies */
+        .case-study {
+            background: #fff9f0;
+            border-left: 4px solid #ff9800;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 6px;
+        }
+
+        .case-study h4 {
+            color: #ff9800;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* ========== Print Styles ========== */
+        @media print {
+            body {
+                background: white;
+                font-size: 11pt;
+                line-height: 1.6;
+            }
+
+            nav, .toc-sidebar {
+                display: none;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            section {
+                page-break-inside: avoid;
+                border: none;
+                box-shadow: none;
+                padding: 1rem 0;
+            }
+
+            header {
+                page-break-after: avoid;
+            }
+
+            h2 {
+                page-break-after: avoid;
+                color: black;
+            }
+
+            h3, h4 {
+                page-break-after: avoid;
+                color: black;
+            }
+
+            .highlight-box, .concept-box, .case-study, .framework {
+                page-break-inside: avoid;
+                background: #f5f5f5 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            a {
+                color: black;
+                text-decoration: none;
+            }
+
+            .toc {
+                page-break-after: always;
+            }
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 768px) {
+            .toc-sidebar {
+                display: none;
+            }
+
+            .container {
+                padding: 100px 1rem 2rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .framework-steps {
+                flex-direction: column;
+            }
+
+            .framework-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>INFP 行为操作系统</h1>
+        <div class="subtitle">Behavioral Operating System for INFP · Complete Version</div>
+    </nav>
+
+    <aside class="toc-sidebar">
+        <h2>目录导航</h2>
+        <ul>
+            <li><a href="#section1">1. 引言</a></li>
+            <li><a href="#section2">2. 认知模型</a></li>
+            <li><a href="#section3">3. BOS 框架</a></li>
+            <li><a href="#section4">4. 提升 Te</a></li>
+            <li><a href="#section5">5. 提升 Ti</a></li>
+            <li><a href="#section6">6. 案例：面试准备</a></li>
+            <li><a href="#section7">7. 案例：实验计划</a></li>
+            <li><a href="#section8">8. 案例：Coding 学习</a></li>
+            <li><a href="#section9">9. 结语</a></li>
+        </ul>
+    </aside>
+
+    <div class="container">
+        <header>
+            <h1>INFP 行为操作系统</h1>
+            <div class="version">Fi · Ne · Si · Te · Ti 的柔性执行蓝图</div>
+        </header>
+
+        <div class="toc">
+            <h2>目录</h2>
+            <ol>
+                <li>引言：为什么 INFP 需要一套操作系统（OS）</li>
+                <li>认知模型：Fi–Ne–Si–Te–Ti 的柔性循环</li>
+                <li>INFP 行为操作系统（BOS）框架</li>
+                <li>如何提升 Te：温柔可持续的执行方式</li>
+                <li>如何提升 Ti：轻结构表达法</li>
+                <li>案例一：面试准备（完整套用操作系统示范）</li>
+                <li>案例二：实验计划（研究/ML 方向通用）</li>
+                <li>案例三：Coding 学习 / LeetCode 刷题</li>
+                <li>结语：柔软并不等于脆弱</li>
+            </ol>
+        </div>
+
+        <section id="section1">
+            <h2>1. 引言：为什么 INFP 需要一套操作系统（OS）</h2>
+
+            <p>INFP 的行动力从来不是靠严格的计划、密集的时间表或外在压力来维持的。对你来说，行动像呼吸一样，需要自然、有机、带有意义。当一项任务让你感到温柔、真实、重要，或与你内心的价值产生共鸣时，你便能毫不费力地进入创造性的流动状态。然而，当任务的意义模糊、入口过大、缺乏结构感、压力上升或情绪负担沉重时，你的 Ne 与 Si 很快会启动一种过载模式：无限联想、反复预演失败、担心不够好、害怕开始、难以迈出第一步。</p>
+
+            <div class="concept-box">
+                <p><strong>这不是你的问题</strong></p>
+                <p>这一切都不是你的问题，也不是"拖延症"。这是你的认知方式本就如此运作。</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>操作系统的目标</h3>
+                <p>本手册的目标不是要你"变得像别人一样高效"，而是帮助你建立一种适合 INFP 的、温柔、可持续、且能不断产生前进感的行为操作系统（OS），让你在不牺牲敏感与创造力的前提下，拥有稳定的行动力与清晰的表达能力。</p>
+            </div>
+        </section>
+
+        <section id="section2">
+            <h2>2. 认知模型：Fi–Ne–Si–Te–Ti 的柔性循环</h2>
+
+            <p>INFP 的整个决策与行动过程围绕其核心功能展开。</p>
+
+            <h3>Fi - 内向情感</h3>
+            <p>Fi 是你的内在指南针，决定你要做什么、为什么要做。它让你对意义敏感，对价值坚守，对真实渴望。</p>
+
+            <h3>Ne - 外向直觉</h3>
+            <p>Ne 是你的灵感之门，给予你新的视角、比喻、结构与方向。它让你看到可能性，也让你容易陷入无限联想。</p>
+
+            <h3>Si - 内向感知</h3>
+            <p>Si 提供现实感，让你保持谨慎，也让你对过去的经验敏感，从而避免重复错误。但 Si 也可能引发焦虑与过度担忧。</p>
+
+            <h3>Te - 外向思考</h3>
+            <p>Te 则是你的行动引擎，虽然弱，但完全可以被训练，只需要正确的启动方式。</p>
+
+            <h3>Ti - 内向思考（影子功能）</h3>
+            <p>影子 Ti 则可以在你需要结构化表达时发挥作用，例如在面试、讲解或讨论时，让你的思路呈现出更清晰的逻辑。</p>
+
+            <div class="highlight-box">
+                <h3>理想的行动循环</h3>
+                <p><strong>Fi 点亮意义 → Ne 找到方向 → Te 推动行动 → Si 温柔复盘</strong></p>
+                <p>反之，如果 Si 先启动，引发焦虑与担忧，Ne 便会被拖入无限思绪的漩涡，从而导致行动停滞。因此，一套好的 OS 必须保护 Fi、引导 Ne、安抚 Si，并为 Te 创造轻盈的行动入口。</p>
+            </div>
+        </section>
+
+        <section id="section3">
+            <h2>3. INFP 行为操作系统（BOS）框架</h2>
+
+            <p>INFP 的 OS 不是用来强迫执行的，而是帮助你以更自然、更符合天性的方式行动。整个系统由六个模块组成，每一个模块都围绕 INFP 的特质重新设计，以确保不会被压迫感、恐惧感或自责感打断节奏。</p>
+
+            <div class="framework">
+                <h3>INFP BOS 核心框架</h3>
+                <div class="framework-steps">
+                    <div class="framework-step">Meaning<br>Baseline</div>
+                    <div class="framework-arrow">→</div>
+                    <div class="framework-step">Clarity<br>Structure</div>
+                    <div class="framework-arrow">→</div>
+                    <div class="framework-step">Emotion-safe<br>Modules</div>
+                    <div class="framework-arrow">→</div>
+                    <div class="framework-step">Flow<br>Pipeline</div>
+                    <div class="framework-arrow">→</div>
+                    <div class="framework-step">Entry<br>Point</div>
+                    <div class="framework-arrow">→</div>
+                    <div class="framework-step">Snapshot</div>
+                </div>
+            </div>
+
+            <h3>3.1 Meaning Baseline（意义基线）</h3>
+            <div class="concept-box">
+                <p><strong>任务的第一步：找到意义</strong></p>
+                <p>对 INFP 来说，任务的第一步从不是"开始做"，而是"找到意义"。只要任务的意义被点亮，你的心便会启动，你的行动便会自然发生。</p>
+                <ul>
+                    <li>"未来更自由一点"</li>
+                    <li>"减少明天的压力"</li>
+                    <li>"让我成长一点点"</li>
+                    <li>"我会为自己感到骄傲"</li>
+                </ul>
+                <p>这些看似微弱的理由却能温柔地推动你的 Fi，帮助你跨过最困难的启动阶段。</p>
+            </div>
+
+            <h3>3.2 Clarity Structure（轻量结构）</h3>
+            <p>为了让 Ne 不至于散乱，让 Si 不至于恐惧，你需要一个轻量、可视化的结构来安放任务。结构越复杂，你越容易感到压力；结构越可视化，你越容易理解并愿意接近它。</p>
+            <p>因此你可以使用简单的三段式结构、思维导图、任务模块树或一张流程图。结构不需要完美，但必须存在，它是一种心理上的安全框架。</p>
+
+            <h3>3.3 Emotion-safe Modules（情绪安全模块）</h3>
+            <p>INFP 不适合被迫执行"巨型任务"。你需要的是小而温柔的模块，每个模块在 15–25 分钟以内，让你可以轻松进入，也可以轻松停下。</p>
+            <p>这些模块必须是可承受的，不会让你产生"我做不到"的情绪压力。模块越轻盈，你越容易进入流状态，而每个模块完成后的即时反馈会极大提升你的情绪积极性，从而形成稳定的行动循环。</p>
+
+            <h3>3.4 Flow Pipeline（情绪节奏流）</h3>
+            <p>INFP 的行动节奏是情绪驱动的，而不是时间驱动的。因此，你需要根据每日能量水平来选择不同强度的任务：</p>
+            <ul>
+                <li><strong>高能日</strong>：推进创造与输出</li>
+                <li><strong>中能日</strong>：做整理与结构</li>
+                <li><strong>低能日</strong>：做轻松的输入工作</li>
+            </ul>
+            <p>这样你就永远不会因为"无法每天高效"而自责，因为你的系统本来就允许你与能量同行，而不是对抗你的能量。</p>
+
+            <h3>3.5 Entry Point（轻入口）</h3>
+            <p>INFP 的最大难点是"开始"。只要开始了，大部分情况你能顺着感觉走下去。因此，你需要刻意设计一个"步幅极小而无痛的入口"。</p>
+            <ul>
+                <li>"打开文件"</li>
+                <li>"写一句话"</li>
+                <li>"运行一次代码"</li>
+                <li>"写三行伪代码"</li>
+            </ul>
+            <p>入口不是为了完成任务，而是为了唤醒 Te，让行动的引擎轻轻启动。</p>
+
+            <h3>3.6 Snapshot（情绪快照）</h3>
+            <p>INFP 在情绪切换时容易失去任务的上下文，因此 Snapshot 极其重要。你需要在每次任务结束时写下：</p>
+            <ul>
+                <li>我做到哪里了</li>
+                <li>下一次从哪里继续</li>
+                <li>我为什么想继续做</li>
+            </ul>
+            <p>这三句话会在下次打开任务时瞬间唤醒你的情绪记忆，让你不会重新经历"陌生感""抗拒感"或"需要重新理解"的痛苦。</p>
+        </section>
+
+        <section id="section4">
+            <h2>4. 如何提升 Te：温柔可持续的执行方式</h2>
+
+            <p>Te 是 INFP 最需要被温柔唤醒的功能，它不是为了战斗，而是为了让你把内心的愿景在现实世界落地。为了提升 Te，你可以从以下方式着手：</p>
+
+            <div class="concept-box">
+                <p><strong>温柔唤醒 Te 的方法：</strong></p>
+                <ul>
+                    <li><strong>把任务拆成小块</strong>：让 Te 只需要处理一个非常明确、可执行的动作</li>
+                    <li><strong>利用外界的节奏</strong>：例如咖啡馆、图书馆或身边也在工作的朋友，让你自然被带入执行状态</li>
+                    <li><strong>使用视觉化结构</strong>：降低 Si 的焦虑，例如在纸上画一个任务框架或进度图</li>
+                </ul>
+            </div>
+
+            <p>当 Te 感到任务"可见""可控""可开始"时，它会自然启动，而不是需要你强迫它启动。</p>
+        </section>
+
+        <section id="section5">
+            <h2>5. 如何提升 Ti：轻结构表达法</h2>
+
+            <p>INFP 不需要真正地像 Ti 型一样思考，只需要模拟逻辑的外观，用结构化的方式表达即可。</p>
+
+            <h3>What–Why–How 模板</h3>
+            <div class="concept-box">
+                <p>最简单的方式是使用 <strong>What–Why–How 模板</strong>：</p>
+                <ul>
+                    <li><strong>What</strong>：先说明事情是什么</li>
+                    <li><strong>Why</strong>：再解释它为什么重要</li>
+                    <li><strong>How</strong>：最后讲你是如何处理的</li>
+                </ul>
+            </div>
+
+            <h3>PRS 模板</h3>
+            <p>在面试或讨论中，你也可以使用 <strong>PRS 模板（Problem–Reason–Solution）</strong>来讲故事。</p>
+
+            <h3>使用类比</h3>
+            <p>除此之外，使用类比是 INFP 最大的优势，你可以将复杂的技术或概念转化成生活中的比喻，让听众更容易理解。</p>
+
+            <div class="highlight-box">
+                <h3>结构化表达的本质</h3>
+                <p>结构化表达并不是强行逻辑，而是让你的思路更易被他人吸收。</p>
+            </div>
+        </section>
+
+        <section id="section6">
+            <h2>6. 案例一：面试准备（完整套用操作系统示范）</h2>
+
+            <div class="case-study">
+                <h4>Meaning Baseline（意义基线）</h4>
+                <p>在面试准备中，意义基线通常是"我希望未来更自由""我想拥有更多选择"。当意义明确后，你的 Fi 会被点亮，行动会自然启动。</p>
+            </div>
+
+            <h3>Clarity Structure（轻量结构）</h3>
+            <p>你可以给面试准备建立一个简单结构：</p>
+            <ul>
+                <li>自我介绍</li>
+                <li>项目讲解</li>
+                <li>行为故事库（STAR 模型）</li>
+            </ul>
+
+            <h3>Emotion-safe Modules（情绪安全模块）</h3>
+            <p>随后把任务拆成轻量模块，例如：</p>
+            <ul>
+                <li>写一个 STAR 故事</li>
+                <li>录一个 3 分钟的自我介绍</li>
+            </ul>
+
+            <h3>Flow Pipeline（情绪节奏流）</h3>
+            <ul>
+                <li><strong>高能日</strong>：进行模拟面试</li>
+                <li><strong>中能日</strong>：整理项目亮点</li>
+                <li><strong>低能日</strong>：阅读别人整理的面试经验</li>
+            </ul>
+
+            <h3>Entry Point（轻入口）</h3>
+            <p>你的入口可以简单到"写一句话版本的自我介绍"。</p>
+
+            <h3>Snapshot（情绪快照）</h3>
+            <p>Snapshot 则记录：</p>
+            <ul>
+                <li>你准备到哪里了</li>
+                <li>接下来要写哪个故事</li>
+                <li>你为什么希望继续准备</li>
+            </ul>
+        </section>
+
+        <section id="section7">
+            <h2>7. 案例二：实验计划（研究/ML 方向通用）</h2>
+
+            <p>在实验任务中，INFP 最容易被庞大的系统结构压垮。为了避免这种情况，你可以先为实验建立一个五元素框架：</p>
+
+            <div class="concept-box">
+                <p><strong>实验五元素框架：</strong></p>
+                <ul>
+                    <li>数据集</li>
+                    <li>模型</li>
+                    <li>变量</li>
+                    <li>指标</li>
+                    <li>可视化</li>
+                </ul>
+            </div>
+
+            <p>结构一旦存在，任务就不再模糊。然后将实验拆分成可承受的小模块，例如：</p>
+            <ul>
+                <li>"跑一次 baseline"</li>
+                <li>"画一张流程图"</li>
+                <li>"写一段实验说明"</li>
+                <li>"修一个 bug"</li>
+            </ul>
+
+            <h3>Flow Pipeline（情绪节奏流）</h3>
+            <ul>
+                <li><strong>高能日</strong>：适合写代码与跑实验</li>
+                <li><strong>中能日</strong>：适合整理结果</li>
+                <li><strong>低能日</strong>：可以阅读论文或画图</li>
+            </ul>
+
+            <h3>Entry Point & Snapshot</h3>
+            <p>入口可以是"运行一次 toy 实验"，而 Snapshot 记录当前结果、下次要运行的命令与实验方向，帮助你自然接续节奏。</p>
+        </section>
+
+        <section id="section8">
+            <h2>8. 案例三：Coding 学习 / LeetCode 刷题</h2>
+
+            <p>学习代码或刷算法题对于 INFP 来说，最重要的是降低逻辑压力。你可以为每道题使用一个温柔的三段结构：</p>
+
+            <div class="concept-box">
+                <p><strong>题目三段结构：</strong></p>
+                <ul>
+                    <li><strong>What</strong>：这题是什么</li>
+                    <li><strong>Why</strong>：它属于什么模式</li>
+                    <li><strong>How</strong>：用三行伪代码描述解法</li>
+                </ul>
+            </div>
+
+            <h3>Emotion-safe Modules（情绪安全模块）</h3>
+            <p>随后，把学习拆分为小模块：</p>
+            <ul>
+                <li>看题三分钟</li>
+                <li>写伪代码</li>
+                <li>写代码</li>
+                <li>调试五分钟</li>
+                <li>记录三句总结</li>
+            </ul>
+
+            <h3>Flow Pipeline（情绪节奏流）</h3>
+            <ul>
+                <li><strong>高能日</strong>：适合做新题</li>
+                <li><strong>中能日</strong>：复习旧题</li>
+                <li><strong>低能日</strong>：阅读题解理解思路</li>
+            </ul>
+
+            <h3>Entry Point & Snapshot</h3>
+            <p>入口始终是"写三行伪代码"。Snapshot 记录题目模式、卡点与下一步方向，这样即使中断多日，你也可以自然地重新进入状态，而不用重新面对碎片化的恐惧。</p>
+        </section>
+
+        <section id="section9">
+            <h2>9. 结语：柔软并不等于脆弱</h2>
+
+            <p>INFP 的力量从来不是通过压迫自己获得的，而是通过尊重自己的感受、节奏与意义感而流动出来的。当你使用适合自己的系统，你会发现执行力不是一种战斗，而是一种与自己温柔协作的过程。</p>
+
+            <div class="highlight-box">
+                <h3>你需要知道的真相</h3>
+                <ul>
+                    <li>你不是拖延，你只是需要意义</li>
+                    <li>你不是不理性，你只是表达方式不同</li>
+                    <li>你不是不自律，你只是需要轻入口与小步</li>
+                    <li>你不是不努力，你只是需要一种与你心性相容的道路</li>
+                </ul>
+            </div>
+
+            <p style="text-align: center; font-size: 1.2rem; color: var(--primary-color); margin-top: 2rem;">愿这个操作系统带你走向一种更柔韧、更稳定、更自由的生活方式，让你以 INFP 的方式，持续发光。</p>
+        </section>
+
+        <footer>
+            <p>—— 结束 ——</p>
+            <p>INFP 行为操作系统 · 完整版</p>
+        </footer>
+    </div>
+</body>
+</html>

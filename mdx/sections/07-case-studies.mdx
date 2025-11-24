@@ -1,0 +1,174 @@
+---
+title: 案例研究
+section: 7-12
+---
+
+import { CaseStudy, BosStep } from '../components/MDXComponents'
+
+# 案例研究：BOS 在不同场景的应用
+
+本章展示 ISTP-A 行为操作系统在六个典型场景中的具体应用。
+
+---
+
+## 案例一：学术论文写作（CS Conference Paper）
+
+撰写学术论文对于 ISTP 来说最大的挑战在于结构庞大、前置不确定性高、需要长期推进且短期内很难看到最终成果。当 Ti 面对未定义的全局结构时，容易陷入不断重写大纲与反复推翻自己设想的循环；而 Se 又无法从中找到明确可操作的起点。
+
+<CaseStudy title="Baseline：丑但完整的论文骨架">
+
+在 ISTP-A 的行为操作系统中，论文写作必须从 Baseline 开始，而不是从"写得漂亮"开始。Baseline 是一份"丑但完整"的论文骨架。它可以只是一个 LaTeX 模板，包含 Abstract、Introduction、Related Work、Method、Experiments、Results、Discussion 与 Conclusion，每个部分只写一句话描述意图即可。同时，你可以预留实验结果的占位图、伪代码的位置与公式位置。只要骨架能编译成 PDF，你就已经解除了最关键的心理阻力。
+
+</CaseStudy>
+
+<BosStep step="Structure" title="细化章节结构">
+
+接下来进入 Structure 阶段，你可以细化每个章节的内部结构。例如：
+
+- **Introduction** 拆为：问题背景、现有方法的不足、你的核心想法、贡献列表
+- **Method** 拆为：整体框架、子模块、关键设计、理论推导或直觉说明
+- **Experiments** 拆为：数据集、评价指标、对比方法、主实验、消融实验与可视化
+
+结构不需要完美，但必须存在。
+
+</BosStep>
+
+<BosStep step="Modules" title="可执行的小任务">
+
+Modules 阶段中，你将论文拆解为一个个可执行的小任务。一个模块可以是"写一段 Related Work"，也可以是"完成主实验表格的填充"或"画出方法的框架图"。这些模块都可以在相对短的时间里推进，从而为 Se 提供即时成就感。
+
+</BosStep>
+
+<BosStep step="Pipeline" title="每周推进节奏">
+
+Pipeline 规定了你推进论文的节奏。与其设定每天写若干页文字，不如设定每周完成两个到三个模块。这样，你既不会被整体任务压垮，也能在数周到数月的时间里持续看到论文逐渐成型。
+
+</BosStep>
+
+<BosStep step="Snapshot" title="快速恢复状态">
+
+Snapshot 则在每次写作结束时记录：今天写到哪一段、下一次从哪一句开始，这样你在中断几天之后，也能迅速恢复写作状态。
+
+</BosStep>
+
+---
+
+## 案例二：大型代码框架构建（实验框架 / SaaS MVP）
+
+大型代码框架往往让 ISTP 陷入工程完美主义的陷阱。Ti 会不断推翻架构，试图寻找最优方案，从而导致迟迟无法跑出第一版。然而对于 ISTP-A 来说，一个框架最重要的不是完美，而是"能跑"和"能改"。
+
+<CaseStudy title="Baseline：最小工作流">
+
+因此，构建代码框架同样需要从 Baseline 开始。Baseline 只需要实现最小工作流，例如一个 toy dataset、一个简单模型、一个最小训练循环。只要能在命令行中跑通，即使结构丑陋，它已经完成 ISTP 最关键的一步：启动势能。
+
+</CaseStudy>
+
+### Structure：规划目录结构
+
+在 Structure 阶段，你才规划目录结构，例如 `models`、`datasets`、`trainers`、`utils` 与 `scripts`。每个目录的存在都应有其"边界意义"，而不是提前填入复杂逻辑。在这一阶段，你只建立骨架，不写抽象基类、不优化性能、不设计全局模式。结构越轻，你越容易进入下一步。
+
+### Modules：独立开发功能
+
+Modules 阶段则让每个功能被独立开发。以模型为例，你可以编写单独的 `simple_cnn.py` 或 `transformer.py`，并在 Jupyter Notebook 内自测模型的 forward 行为。这些模块一旦自测通过，才进入系统层的 registry。模块独立、边界明确，是 ISTP 避免系统混乱的关键。
+
+### Pipeline & Snapshot
+
+Pipeline 最后通过 config 文件驱动整个系统，使"添加一次实验"变成"添加一份配置"。Snapshot 则确保你下一次能直接从上一份 config 或上一段 trainer 逻辑继续推进，避免重新分析整个框架。
+
+---
+
+## 案例三：求职（MLE / AE / Research Engineer）
+
+求职过程本质上是一个多阶段、多模块的系统工程，而非一次性的行动。ISTP-A 在求职中容易出现两个问题：第一是 Ti 想要准备得特别完善才愿意开始；第二是 Se 因缺乏即时反馈而丢失动力。
+
+<CaseStudy title="Baseline：可投递的简历">
+
+求职的 Baseline 通常包括一个最基础的可投递简历，即便它并不完美，也应能够在五分钟内修改并投出。一旦简历基本可用，你就自然跨过了 Ti 的高门槛审查，同时也让 Se 感受到"这件事已经开始流动"。
+
+</CaseStudy>
+
+### 关键模块
+
+- 技能补全模块
+- 项目模块（STAR 格式）
+- 行为面试准备
+- 投递模块
+- Mock 面试模块
+
+每个模块都可以在 20-40 分钟内推进，例如"把一个项目写成 STAR 格式"、"实现一个小型 ML demo"、"复习一个 system design 模块"或"给一个岗位投五份简历"。
+
+---
+
+## 案例四：健身（Fitness System）
+
+健身应被视为由一组可调用模块构成的系统，而非刚性训练计划。
+
+<CaseStudy title="Baseline：五分钟动作">
+
+健身的 Baseline 是一个可执行的五分钟动作，例如十个俯卧撑、十五个深蹲或一分钟跑步。这些动作的目的不是训练效果本身，而是激活 Se，从而消除任务启动的阻力。
+
+</CaseStudy>
+
+### Structure：训练模块分类
+
+- **Push** - 推的动作（俯卧撑、卧推等）
+- **Pull** - 拉的动作（引体、划船等）
+- **Legs** - 腿部训练
+- **Core** - 核心训练
+- **Cardio** - 有氧训练
+- **Mobility** - 灵活性训练
+
+每个模块都独立，不依赖于连续日程。你可以在任何一天选择一个模块执行，不需要计算"今天是不是腿日"。
+
+---
+
+## 案例五：PhD Thesis（大型长期项目）
+
+博士论文是一个典型的长期、巨大且结构复杂的任务，因此非常容易触发 ISTP 的分析瘫痪。
+
+<CaseStudy title="Baseline：能编译的 Thesis Skeleton">
+
+Baseline 是一份能编译的 thesis skeleton，它应包含标题、章节结构、占位图片、空白小节与最小的参考文献文件。哪怕内容仍是空白，只要 PDF 能够生成，就已经产生了强大的心理启动效应。
+
+</CaseStudy>
+
+### 推进策略
+
+- 每周推进 2-3 个模块
+- 每个模块可在 30 分钟内完成
+- 使用 Snapshot 标记下一次入口："继续完善推导第二步的解释"或"在 4.2 小节中补上消融实验结果"
+
+---
+
+## 案例六：EB1A/O1 移民申请文书
+
+EB1A 或 O1 的文书任务复杂、材料繁多、跨越多个文档，并且需要同时管理推荐信、Exhibits、Petition Letter 与时间线。
+
+<CaseStudy title="Baseline：粗略大纲与模板">
+
+Baseline 在此情境中是一份 Petition Letter 的粗略大纲、一份推荐信的模板，以及一份 Exhibits 列表。这些文档都可以是极其粗糙的占位内容，只要它们确实存在，就会立即降低任务的不确定性。
+
+</CaseStudy>
+
+### Structure 策略
+
+- 为每个 Criterion 明确 3-4 个子节：标准条文、你的对应事项、证据集合与影响说明
+- 为推荐信设定固定段落模板（介绍、关系、成就、影响与总结）
+
+### 可执行模块
+
+- 补写一个 Criterion 的某一段
+- 编写一份推荐信草稿
+- 整理一项证据
+- 准备一个 Exhibit 页面的说明
+- 完善时间线中的某一段经历
+
+---
+
+## 总结
+
+这六个案例展示了 BOS 框架的通用性。无论任务类型如何不同，核心循环始终是：
+
+**Baseline → Structure → Modules → Pipeline → Entry Point → Snapshot**
+
+关键在于根据任务特性调整每个环节的具体形式，但保持框架的一致性。
