@@ -1,17 +1,12 @@
 {
-  "version": 2,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/index.html"
+      "source": "/istp",
+      "destination": "/istp.html"
     },
     {
-      "src": "/istp",
-      "dest": "/istp.html"
-    },
-    {
-      "src": "/infp",
-      "dest": "/infp_os.html"
+      "source": "/infp",
+      "destination": "/infp_os.html"
     }
   ],
   "cleanUrls": true,
