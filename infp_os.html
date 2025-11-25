@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +42,7 @@
             border-bottom: 1px solid var(--border-color);
             padding: 1rem 2rem;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         nav h1 {
@@ -169,7 +170,7 @@
             border-radius: 12px;
             margin-bottom: 2rem;
             border: 1px solid var(--border-color);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         h2 {
@@ -206,12 +207,12 @@
             padding: 2rem;
             border-radius: 12px;
             margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .highlight-box h3 {
             color: white;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 0.5rem;
         }
 
@@ -251,7 +252,7 @@
             border-radius: 8px;
             font-weight: 600;
             color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             flex: 1;
             min-width: 120px;
         }
@@ -263,7 +264,8 @@
         }
 
         /* Lists */
-        ul, ol {
+        ul,
+        ol {
             margin-left: 2rem;
             margin-bottom: 1.25rem;
         }
@@ -302,7 +304,8 @@
                 line-height: 1.6;
             }
 
-            nav, .toc-sidebar {
+            nav,
+            .toc-sidebar {
                 display: none;
             }
 
@@ -328,12 +331,16 @@
                 color: black;
             }
 
-            h3, h4 {
+            h3,
+            h4 {
                 page-break-after: avoid;
                 color: black;
             }
 
-            .highlight-box, .concept-box, .case-study, .framework {
+            .highlight-box,
+            .concept-box,
+            .case-study,
+            .framework {
                 page-break-inside: avoid;
                 background: #f5f5f5 !important;
                 -webkit-print-color-adjust: exact;
@@ -376,8 +383,43 @@
                 transform: rotate(90deg);
             }
         }
+
+        /* Audio Player Styles */
+        .audio-player-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .audio-info {
+            flex: 1;
+        }
+
+        .audio-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .audio-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        audio {
+            height: 40px;
+            outline: none;
+        }
     </style>
 </head>
+
 <body>
     <nav>
         <h1>INFP 行为操作系统</h1>
@@ -395,7 +437,8 @@
             <li><a href="#section6">6. 案例：面试准备</a></li>
             <li><a href="#section7">7. 案例：实验计划</a></li>
             <li><a href="#section8">8. 案例：Coding 学习</a></li>
-            <li><a href="#section9">9. 结语</a></li>
+            <li><a href="#podcasts">9. Podcasts (Audio)</a></li>
+            <li><a href="#section9">10. 结语</a></li>
         </ul>
     </aside>
 
@@ -416,6 +459,7 @@
                 <li>案例一：面试准备（完整套用操作系统示范）</li>
                 <li>案例二：实验计划（研究/ML 方向通用）</li>
                 <li>案例三：Coding 学习 / LeetCode 刷题</li>
+                <li>Podcasts：音频资源</li>
                 <li>结语：柔软并不等于脆弱</li>
             </ol>
         </div>
@@ -423,7 +467,9 @@
         <section id="section1">
             <h2>1. 引言：为什么 INFP 需要一套操作系统（OS）</h2>
 
-            <p>INFP 的行动力从来不是靠严格的计划、密集的时间表或外在压力来维持的。对你来说，行动像呼吸一样，需要自然、有机、带有意义。当一项任务让你感到温柔、真实、重要，或与你内心的价值产生共鸣时，你便能毫不费力地进入创造性的流动状态。然而，当任务的意义模糊、入口过大、缺乏结构感、压力上升或情绪负担沉重时，你的 Ne 与 Si 很快会启动一种过载模式：无限联想、反复预演失败、担心不够好、害怕开始、难以迈出第一步。</p>
+            <p>INFP
+                的行动力从来不是靠严格的计划、密集的时间表或外在压力来维持的。对你来说，行动像呼吸一样，需要自然、有机、带有意义。当一项任务让你感到温柔、真实、重要，或与你内心的价值产生共鸣时，你便能毫不费力地进入创造性的流动状态。然而，当任务的意义模糊、入口过大、缺乏结构感、压力上升或情绪负担沉重时，你的
+                Ne 与 Si 很快会启动一种过载模式：无限联想、反复预演失败、担心不够好、害怕开始、难以迈出第一步。</p>
 
             <div class="concept-box">
                 <p><strong>这不是你的问题</strong></p>
@@ -432,7 +478,8 @@
 
             <div class="highlight-box">
                 <h3>操作系统的目标</h3>
-                <p>本手册的目标不是要你"变得像别人一样高效"，而是帮助你建立一种适合 INFP 的、温柔、可持续、且能不断产生前进感的行为操作系统（OS），让你在不牺牲敏感与创造力的前提下，拥有稳定的行动力与清晰的表达能力。</p>
+                <p>本手册的目标不是要你"变得像别人一样高效"，而是帮助你建立一种适合 INFP
+                    的、温柔、可持续、且能不断产生前进感的行为操作系统（OS），让你在不牺牲敏感与创造力的前提下，拥有稳定的行动力与清晰的表达能力。</p>
             </div>
         </section>
 
@@ -691,6 +738,22 @@
             <p>入口始终是"写三行伪代码"。Snapshot 记录题目模式、卡点与下一步方向，这样即使中断多日，你也可以自然地重新进入状态，而不用重新面对碎片化的恐惧。</p>
         </section>
 
+        <section id="podcasts">
+            <h2>9. Podcasts (Audio Resources)</h2>
+            <p>这里有一个专门为 INFP 准备的音频内容，可以在散步或独处时收听。</p>
+
+            <div class="audio-player-container">
+                <div class="audio-info">
+                    <span class="audio-title">Build an Action System for Sensitive Minds</span>
+                    <span class="audio-subtitle">为敏感心灵构建的行动系统</span>
+                </div>
+                <audio controls>
+                    <source src="podcasts/infp/Build_an_Action_System_for_Sensitive_Minds.m4a" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </section>
+
         <section id="section9">
             <h2>9. 结语：柔软并不等于脆弱</h2>
 
@@ -706,7 +769,8 @@
                 </ul>
             </div>
 
-            <p style="text-align: center; font-size: 1.2rem; color: var(--primary-color); margin-top: 2rem;">愿这个操作系统带你走向一种更柔韧、更稳定、更自由的生活方式，让你以 INFP 的方式，持续发光。</p>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--primary-color); margin-top: 2rem;">
+                愿这个操作系统带你走向一种更柔韧、更稳定、更自由的生活方式，让你以 INFP 的方式，持续发光。</p>
         </section>
 
         <footer>
@@ -715,4 +779,5 @@
         </footer>
     </div>
 </body>
+
 </html>
