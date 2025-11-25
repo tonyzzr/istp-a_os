@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +42,7 @@
             border-bottom: 1px solid var(--border-color);
             padding: 1rem 2rem;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         nav h1 {
@@ -169,7 +170,7 @@
             border-radius: 12px;
             margin-bottom: 2rem;
             border: 1px solid var(--border-color);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         h2 {
@@ -206,12 +207,12 @@
             padding: 2rem;
             border-radius: 12px;
             margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .highlight-box h3 {
             color: white;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 0.5rem;
         }
 
@@ -251,7 +252,7 @@
             border-radius: 8px;
             font-weight: 600;
             color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             flex: 1;
             min-width: 120px;
         }
@@ -263,7 +264,8 @@
         }
 
         /* Lists */
-        ul, ol {
+        ul,
+        ol {
             margin-left: 2rem;
             margin-bottom: 1.25rem;
         }
@@ -302,7 +304,8 @@
                 line-height: 1.6;
             }
 
-            nav, .toc-sidebar {
+            nav,
+            .toc-sidebar {
                 display: none;
             }
 
@@ -328,12 +331,16 @@
                 color: black;
             }
 
-            h3, h4 {
+            h3,
+            h4 {
                 page-break-after: avoid;
                 color: black;
             }
 
-            .highlight-box, .concept-box, .case-study, .framework {
+            .highlight-box,
+            .concept-box,
+            .case-study,
+            .framework {
                 page-break-inside: avoid;
                 background: #f5f5f5 !important;
                 -webkit-print-color-adjust: exact;
@@ -376,8 +383,43 @@
                 transform: rotate(90deg);
             }
         }
+
+        /* Audio Player Styles */
+        .audio-player-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .audio-info {
+            flex: 1;
+        }
+
+        .audio-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .audio-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        audio {
+            height: 40px;
+            outline: none;
+        }
     </style>
 </head>
+
 <body>
     <nav>
         <h1>ISTP-A 行为操作系统</h1>
@@ -394,6 +436,7 @@
             <li><a href="#section5">5. 方法论论证</a></li>
             <li><a href="#section6">6. 多任务并行管理</a></li>
             <li><a href="#section7">7. ISTP × AI</a></li>
+            <li><a href="#podcasts">8. Podcasts (Audio)</a></li>
             <li>
                 <a href="#appendix">附录：应用案例</a>
                 <ul style="margin-left: 1rem; margin-top: 0.5rem;">
@@ -424,6 +467,7 @@
                 <li>方法论论证与结语：ISTP-A 的长期复利路径</li>
                 <li>多任务并行管理（Priority OS 作为指导原则）</li>
                 <li>ISTP × AI：Idea-to-Asset Compiler（想法到资产的编译器模型）</li>
+                <li>Podcasts：音频资源</li>
                 <li>附录：应用案例集</li>
             </ol>
         </div>
@@ -431,9 +475,11 @@
         <section id="section1">
             <h2>1. 引言：为什么 ISTP-A 需要一套行为操作系统</h2>
 
-            <p>ISTP-A 的优势往往在于行动迅速、反应敏捷、逻辑清晰、学习速度快，也擅长解决具体问题。你通常能够在实际情境中快速理解系统的运行方式，并通过动手尝试找到高效的解决方案。然而，ISTP-A 天生不擅长长期规划，不喜欢被时间表束缚，容易因为 Ti 过度分析而迟迟无法开始一个项目，也容易因为 Se 追求短期体验而在中途中断长期任务。</p>
+            <p>ISTP-A 的优势往往在于行动迅速、反应敏捷、逻辑清晰、学习速度快，也擅长解决具体问题。你通常能够在实际情境中快速理解系统的运行方式，并通过动手尝试找到高效的解决方案。然而，ISTP-A
+                天生不擅长长期规划，不喜欢被时间表束缚，容易因为 Ti 过度分析而迟迟无法开始一个项目，也容易因为 Se 追求短期体验而在中途中断长期任务。</p>
 
-            <p>更重要的是，ISTP-A 的 Te 虽然具备很强的执行爆发力，但这种爆发往往是阶段性的、情境驱动的，需要明确、具体的入口才能被激活。当任务模糊、过于抽象或缺乏即时反馈时，Ti 会接管，并尝试在脑内"推演出最佳路线"，结果反而把行动推迟了。</p>
+            <p>更重要的是，ISTP-A 的 Te 虽然具备很强的执行爆发力，但这种爆发往往是阶段性的、情境驱动的，需要明确、具体的入口才能被激活。当任务模糊、过于抽象或缺乏即时反馈时，Ti
+                会接管，并尝试在脑内"推演出最佳路线"，结果反而把行动推迟了。</p>
 
             <div class="concept-box">
                 <p><strong>ISTP-A 面对复杂、长期任务时的典型模式：</strong></p>
@@ -450,27 +496,34 @@
 
             <div class="highlight-box">
                 <h3>行为操作系统的核心理念</h3>
-                <p>本手册提出的"ISTP-A 行为操作系统（Behavioral Operating System）"，就是为了把你的天赋使用方式重新整理成一套结构化、可复用、可迁移的模板。它不强迫你变成另一个类型，而是让你在保持自由度的前提下，获得更稳定、更可预测的长期输出。</p>
+                <p>本手册提出的"ISTP-A 行为操作系统（Behavioral Operating
+                    System）"，就是为了把你的天赋使用方式重新整理成一套结构化、可复用、可迁移的模板。它不强迫你变成另一个类型，而是让你在保持自由度的前提下，获得更稳定、更可预测的长期输出。</p>
             </div>
         </section>
 
         <section id="section2">
             <h2>2. 核心认知模型：Ti、Se、Te 的对立统一与协同</h2>
 
-            <p>ISTP-A 的认知核心是 <strong>Ti（内向思考）</strong>，辅以 <strong>Se（外向感知）</strong>，并在成熟之后发展出较为可用的 <strong>Te（外向思考）</strong>。这三者之间不是平行工作，而是一种动态循环。</p>
+            <p>ISTP-A 的认知核心是 <strong>Ti（内向思考）</strong>，辅以 <strong>Se（外向感知）</strong>，并在成熟之后发展出较为可用的
+                <strong>Te（外向思考）</strong>。这三者之间不是平行工作，而是一种动态循环。</p>
 
             <h3>Ti - 内向思考</h3>
-            <p>Ti 倾向于向内在逻辑世界深潜。它喜欢拆解系统结构、寻找最优解、保证内部一致性。Ti 让你能够在较短时间内理解一个系统的核心原理，并发现许多别人注意不到的结构问题。但 Ti 的弱点在于，它在面对不完整信息或庞大结构时，容易陷入无休止的推演和追求完美。当 Ti 一直试图"想清楚一切再行动"时，行动就被拖延了。</p>
+            <p>Ti 倾向于向内在逻辑世界深潜。它喜欢拆解系统结构、寻找最优解、保证内部一致性。Ti 让你能够在较短时间内理解一个系统的核心原理，并发现许多别人注意不到的结构问题。但 Ti
+                的弱点在于，它在面对不完整信息或庞大结构时，容易陷入无休止的推演和追求完美。当 Ti 一直试图"想清楚一切再行动"时，行动就被拖延了。</p>
 
             <h3>Se - 外向感知</h3>
-            <p>Se 则是 ISTP 行动力的直接引擎。Se 关注当下的现实与感官体验。通过看、摸、试、做，你会迅速进入状态。你往往不是通过"想明白之后再做"，而是在"先做一点看看会发生什么"的过程中理解事物。当任务可以具体被操作、可以在短时间内看到反馈时，Se 会极大提升你的能量与专注度。</p>
+            <p>Se 则是 ISTP 行动力的直接引擎。Se
+                关注当下的现实与感官体验。通过看、摸、试、做，你会迅速进入状态。你往往不是通过"想明白之后再做"，而是在"先做一点看看会发生什么"的过程中理解事物。当任务可以具体被操作、可以在短时间内看到反馈时，Se
+                会极大提升你的能量与专注度。</p>
 
             <h3>Te - 外向思考</h3>
-            <p>Te 是负责外向执行和结构化输出的功能。当一个任务已经有了足够清晰的结构、有明确的入口、有可以观察的输出指标时，Te 会非常高效地把事情一步步做完。但在 ISTP 的功能序列里，Te 并不是自动常驻的，它需要被合适地"唤醒"。如果任务停留在抽象层面，或者结构尚未成型，Te 往往不会自动启动。</p>
+            <p>Te 是负责外向执行和结构化输出的功能。当一个任务已经有了足够清晰的结构、有明确的入口、有可以观察的输出指标时，Te 会非常高效地把事情一步步做完。但在 ISTP 的功能序列里，Te
+                并不是自动常驻的，它需要被合适地"唤醒"。如果任务停留在抽象层面，或者结构尚未成型，Te 往往不会自动启动。</p>
 
             <div class="highlight-box">
                 <h3>高效工作模式：Ti-Se-Te 循环</h3>
-                <p>ISTP-A 的高效工作模式，是 Ti、Se、Te 的循环：<strong>Ti 提供结构感和关键点判断，Se 通过具体行动和即时反馈驱动投入感，Te 负责把模块化的任务推进到完成，形成可见成果。</strong></p>
+                <p>ISTP-A 的高效工作模式，是 Ti、Se、Te 的循环：<strong>Ti 提供结构感和关键点判断，Se 通过具体行动和即时反馈驱动投入感，Te
+                        负责把模块化的任务推进到完成，形成可见成果。</strong></p>
                 <p>如果任务设计破坏了这一循环，例如要求你长期停留在纯抽象规划，或者要求你在没有清晰结构的前提下硬执行，那么你很可能会在拖延与爆发之间来回反复。</p>
             </div>
         </section>
@@ -510,13 +563,17 @@
             </div>
 
             <h3>Structure - 建立骨架</h3>
-            <p>Structure 是建立任务骨架的阶段。它不追求精美的架构设计，而是为任务建立清晰的边界与分区。可以是章节目录、文件结构、模块树、配置文件分布或职责划分。只要你知道"这一块内容放在哪个文件、哪一节或哪一个模块里"，Ti 就会获得安全感，不再需要不断推翻整体。</p>
+            <p>Structure
+                是建立任务骨架的阶段。它不追求精美的架构设计，而是为任务建立清晰的边界与分区。可以是章节目录、文件结构、模块树、配置文件分布或职责划分。只要你知道"这一块内容放在哪个文件、哪一节或哪一个模块里"，Ti
+                就会获得安全感，不再需要不断推翻整体。</p>
 
             <h3>Modules - 可执行的小块</h3>
-            <p>Modules 是操作层的主角。所有任务都需要被拆解成可独立完成的小块。每个模块应当小到可以在二十到四十分钟内推进一次，大到足以构成实际前进。例如"写一段 related work"、"添加一个新模型实现"、"跑一组 baseline 实验"、"写一封推荐信用的一个段落"、"完成一次 push 训练"。模块是 Se 的行动入口，也是 Te 的执行单位。</p>
+            <p>Modules 是操作层的主角。所有任务都需要被拆解成可独立完成的小块。每个模块应当小到可以在二十到四十分钟内推进一次，大到足以构成实际前进。例如"写一段 related
+                work"、"添加一个新模型实现"、"跑一组 baseline 实验"、"写一封推荐信用的一个段落"、"完成一次 push 训练"。模块是 Se 的行动入口，也是 Te 的执行单位。</p>
 
             <h3>Pipeline - 稳定节奏</h3>
-            <p>Pipeline 则定义了你如何以稳定节奏推进这些模块。与复杂的时间管理系统不同，ISTP 的 Pipeline 极为轻量：每周为最重要的项目推进若干模块，每天执行一个或两个小模块即可。你不需要每天处理所有项目，只需要每周保证每个核心项目至少被推进一次。</p>
+            <p>Pipeline 则定义了你如何以稳定节奏推进这些模块。与复杂的时间管理系统不同，ISTP 的 Pipeline
+                极为轻量：每周为最重要的项目推进若干模块，每天执行一个或两个小模块即可。你不需要每天处理所有项目，只需要每周保证每个核心项目至少被推进一次。</p>
 
             <h3>Entry Point - 切入位置</h3>
             <p>Entry Point 是每次重新开始一个任务时的"切入位置"。它通常是：下一次从哪行代码改起，从哪段文字写起，从哪张图开始画。Entry Point 越具体，越能降低启动阻力。</p>
@@ -526,7 +583,8 @@
 
             <div class="highlight-box">
                 <h3>可复用的闭环</h3>
-                <p>这六个环节构成一个可以反复使用的闭环。任何任务，都可以从 Baseline 启动，经 Structure 明确边界，在 Modules 中被拆解，在 Pipeline 中节奏化执行，通过 Entry Point 再次启动，并依靠 Snapshot 承接上下文。</p>
+                <p>这六个环节构成一个可以反复使用的闭环。任何任务，都可以从 Baseline 启动，经 Structure 明确边界，在 Modules 中被拆解，在 Pipeline 中节奏化执行，通过 Entry
+                    Point 再次启动，并依靠 Snapshot 承接上下文。</p>
             </div>
         </section>
 
@@ -545,10 +603,12 @@
             </div>
 
             <h3>原则二：边界明确</h3>
-            <p>Ti 需要知道"这一块到底属于哪里"。否则，它就会在全局结构中反复扫视，试图重新定义边界。通过建立章节与模块的结构，你为 Ti 提供了一个容器，使其可以在有限空间内优化，而不是在无限可能中漂浮。边界明确并不意味着僵化，而是为创造性行动划定舞台。</p>
+            <p>Ti 需要知道"这一块到底属于哪里"。否则，它就会在全局结构中反复扫视，试图重新定义边界。通过建立章节与模块的结构，你为 Ti
+                提供了一个容器，使其可以在有限空间内优化，而不是在无限可能中漂浮。边界明确并不意味着僵化，而是为创造性行动划定舞台。</p>
 
             <h3>原则三：结构轻量</h3>
-            <p>ISTP 非常敏锐，一旦感到结构过重、系统难以维护，就会产生强烈的反感与回避。一个好的行为操作系统应该提供足够的结构感，但不会变成额外负担。你可以把它想象成"一个松散但稳定的骨架"，而不是一个压制性的流程模板。</p>
+            <p>ISTP 非常敏锐，一旦感到结构过重、系统难以维护，就会产生强烈的反感与回避。一个好的行为操作系统应该提供足够的结构感，但不会变成额外负担。你可以把它想象成"一个松散但稳定的骨架"，而不是一个压制性的流程模板。
+            </p>
 
             <div class="highlight-box">
                 <h3>核心目标</h3>
@@ -559,7 +619,9 @@
         <section id="section5">
             <h2>5. 方法论论证与结语：ISTP-A 的长期复利路径</h2>
 
-            <p>本系统背后的核心逻辑，是严格按照 ISTP 的认知天性构建的。ISTP 的执行力并非取决于外在强迫或宏大目标，而取决于"是否能看到一个立即可行动的入口"。当任务被拆成模块、入口被明确指出、边界被清晰划定之后，Ti 会停止自我阻挡，Se 会被具体行动所吸引，Te 也就有了发挥的空间。</p>
+            <p>本系统背后的核心逻辑，是严格按照 ISTP 的认知天性构建的。ISTP
+                的执行力并非取决于外在强迫或宏大目标，而取决于"是否能看到一个立即可行动的入口"。当任务被拆成模块、入口被明确指出、边界被清晰划定之后，Ti 会停止自我阻挡，Se 会被具体行动所吸引，Te
+                也就有了发挥的空间。</p>
 
             <h3>为 Ti 提供稳定边界</h3>
             <p>Ti 的优势是理解与结构化，但其弱点是在结构不完整时不断重启推演。Baseline 与 Structure 两者共同为 Ti 提供稳定边界，使它可以将精力用于局部优化，而不是无休止地修正整体框架。</p>
@@ -568,11 +630,13 @@
             <p>Se 的动力来自即时反馈，而 Modules 与 Pipeline 则持续提供这种反馈。每完成一个模块，你都会在体感上获得"有东西在推进"的确认。</p>
 
             <h3>让 Te 面对可执行的小块</h3>
-            <p>Te 在明确的结构与路径下才能爆发。当你知道"今天只需要完成这个小模块"时，Te 乐于上场；而当任务被表述为"完成一篇论文、写完整套文书或整理所有代码"，Te 则很难启动。整个 BOS 的设计，就是为了让 Te 永远面对的是"可执行的小块"，而不是抽象的庞然大物。</p>
+            <p>Te 在明确的结构与路径下才能爆发。当你知道"今天只需要完成这个小模块"时，Te 乐于上场；而当任务被表述为"完成一篇论文、写完整套文书或整理所有代码"，Te 则很难启动。整个 BOS 的设计，就是为了让 Te
+                永远面对的是"可执行的小块"，而不是抽象的庞然大物。</p>
 
             <div class="highlight-box">
                 <h3>长期复利式成长</h3>
-                <p>通过不断循环 Baseline → Structure → Modules → Pipeline → Snapshot，ISTP 可以在不牺牲自由度的前提下，获得长期复利式的成长。你不需要把自己变成某种高度计划性的角色，只需要让每一个任务都符合这套模式。</p>
+                <p>通过不断循环 Baseline → Structure → Modules → Pipeline → Snapshot，ISTP
+                    可以在不牺牲自由度的前提下，获得长期复利式的成长。你不需要把自己变成某种高度计划性的角色，只需要让每一个任务都符合这套模式。</p>
                 <p>从更长的时间尺度来看，这不仅仅是一套生产力系统，而是一种适合 ISTP 本性的生活方式和工作哲学。它既尊重你对自由与弹性的需求，又为你的长期目标提供了稳态推进的结构，让天赋真正转化为成果。</p>
             </div>
         </section>
@@ -580,9 +644,11 @@
         <section id="section6">
             <h2>6. 多任务并行管理（Priority OS 作为指导原则）</h2>
 
-            <p>多任务并行是 ISTP 最容易被压垮的情境之一。因为 Ti 会不断扫描所有任务，试图找到"最优推进路径"，结果往往是：想得越多，越不知道从哪里开始。与此同时，Se 无法获得明确的可行动起点，Te 也无从发挥，整体系统进入停滞。</p>
+            <p>多任务并行是 ISTP 最容易被压垮的情境之一。因为 Ti 会不断扫描所有任务，试图找到"最优推进路径"，结果往往是：想得越多，越不知道从哪里开始。与此同时，Se 无法获得明确的可行动起点，Te
+                也无从发挥，整体系统进入停滞。</p>
 
-            <p>为了解决这一问题，多任务管理在 ISTP-A 的世界里，不应被理解为"同时推进很多任务"，而应被看作"在某个时刻只做一个小模块，但在更长周期内轮流推进多个项目"。这一点需要由一个专门的调度系统来承载，这就是 <strong>Priority OS</strong>。</p>
+            <p>为了解决这一问题，多任务管理在 ISTP-A 的世界里，不应被理解为"同时推进很多任务"，而应被看作"在某个时刻只做一个小模块，但在更长周期内轮流推进多个项目"。这一点需要由一个专门的调度系统来承载，这就是
+                <strong>Priority OS</strong>。</p>
 
             <h3>Priority OS 五维评分系统</h3>
             <div class="concept-box">
@@ -601,15 +667,19 @@
             <h3>实践原则</h3>
             <p>实践上，你只需在每周重点推进优先级最高的一到两个项目，对其余项目进行低频维护即可。</p>
 
-            <p><strong>Snapshot 在这里尤为关键。</strong>只要你在每个项目中都留下清晰的 Snapshot，说明上次做到哪里、下一次从哪里开始，那么你就可以在项目之间无痛切换，不需要重启全局推演。这样，多项目环境不再是一个巨大的心理负担，而是一个被模块化调度支撑的系统。</p>
+            <p><strong>Snapshot 在这里尤为关键。</strong>只要你在每个项目中都留下清晰的
+                Snapshot，说明上次做到哪里、下一次从哪里开始，那么你就可以在项目之间无痛切换，不需要重启全局推演。这样，多项目环境不再是一个巨大的心理负担，而是一个被模块化调度支撑的系统。</p>
         </section>
 
         <section id="section7">
             <h2>7. ISTP × AI：Idea-to-Asset Compiler（想法到资产的编译器模型）</h2>
 
-            <p>当代的 AI 时代彻底改变了 ISTP 的生产力结构。过去，ISTP 的主要瓶颈在于"想法强，但无法稳定地变成成品"。他们能够迅速洞察系统本质、理解核心结构、提出高质量的思路，但却常常卡在将这些思路转化为可交付成果的最后阶段。论文写作中是"写不完非核心段落"，代码工程中是"骨架清晰但缺乏 glue code"，文书中是"大结构明晰但内容碎片化"，长期项目中是"开头漂亮、中断即死"。</p>
+            <p>当代的 AI 时代彻底改变了 ISTP 的生产力结构。过去，ISTP
+                的主要瓶颈在于"想法强，但无法稳定地变成成品"。他们能够迅速洞察系统本质、理解核心结构、提出高质量的思路，但却常常卡在将这些思路转化为可交付成果的最后阶段。论文写作中是"写不完非核心段落"，代码工程中是"骨架清晰但缺乏
+                glue code"，文书中是"大结构明晰但内容碎片化"，长期项目中是"开头漂亮、中断即死"。</p>
 
-            <p>AI 的出现，使这一切发生了根本性的转折。在 BOS 的框架下，AI 不再是一个工具，而是"ISTP 大脑的结构化扩展层"。ISTP 负责提供核心 insight、结构框架与方向判断，而 AI 则成为补全结构、填充内容、生成接口与产出资产的自动化执行器。</p>
+            <p>AI 的出现，使这一切发生了根本性的转折。在 BOS 的框架下，AI 不再是一个工具，而是"ISTP 大脑的结构化扩展层"。ISTP 负责提供核心 insight、结构框架与方向判断，而 AI
+                则成为补全结构、填充内容、生成接口与产出资产的自动化执行器。</p>
 
             <h3>核心思想：ISTP 是前端，AI 是后端，BOS 是构建系统</h3>
 
@@ -626,13 +696,15 @@
 
             <h3>ISTP 负责 20% 的价值密度最高部分</h3>
 
-            <p>ISTP 的独特优势在于：极快理解系统本质的能力、天然的结构洞察力、对动作路径和实验路线的敏锐直觉、发现不一致与漏洞的能力。这些属于高价值的"20%"。过去，这 20% 无法自动转化为可交付物，因此 ISTP 的产出往往看起来"不完整或不稳定"。</p>
+            <p>ISTP 的独特优势在于：极快理解系统本质的能力、天然的结构洞察力、对动作路径和实验路线的敏锐直觉、发现不一致与漏洞的能力。这些属于高价值的"20%"。过去，这 20% 无法自动转化为可交付物，因此 ISTP
+                的产出往往看起来"不完整或不稳定"。</p>
 
             <p>AI 的角色，就是将 ISTP 的 20% 放大成 100% 的产品形态。填表式内容、胶水代码、格式化文书、结构补全、数据处理、文档生成、图表绘制等消耗精力的部分，都可以交给 AI。</p>
 
             <h3>AI 补上 ISTP 的最大缺口：结构填充（Structural Completion）</h3>
 
-            <p>ISTP 最大的动机问题，是对"非本质、无趣、重复"的结构化补全工作缺乏耐性。写论文的 related work、代码的 wrapper、应用的 UI 文案、申请材料的格式化内容，ISTP 明明会，但不愿反复投入注意力。</p>
+            <p>ISTP 最大的动机问题，是对"非本质、无趣、重复"的结构化补全工作缺乏耐性。写论文的 related work、代码的 wrapper、应用的 UI 文案、申请材料的格式化内容，ISTP
+                明明会，但不愿反复投入注意力。</p>
 
             <div class="concept-box">
                 <p><strong>AI 恰好能够：</strong></p>
@@ -689,7 +761,8 @@
 
             <h3>案例：ISTP × AI 论文写作的完整模型</h3>
 
-            <p>论文写作是一个典型的"高结构化任务"，过去 ISTP 极易在结构填充、文书展开、大量 glue code、重复性实验等环节失去 momentum。然而 AI 的出现，使得 ISTP 能够专注于最关键、最高价值、最符合自身天赋的部分（idea、本质、实验），并利用 AI 自动补全剩余的大量结构化工作。</p>
+            <p>论文写作是一个典型的"高结构化任务"，过去 ISTP 极易在结构填充、文书展开、大量 glue code、重复性实验等环节失去 momentum。然而 AI 的出现，使得 ISTP
+                能够专注于最关键、最高价值、最符合自身天赋的部分（idea、本质、实验），并利用 AI 自动补全剩余的大量结构化工作。</p>
 
             <h4>总体认识：AI 是结构补全器，ISTP 是本质生成器</h4>
 
@@ -716,21 +789,24 @@
                 <p><strong>目标</strong>：在"最便宜的时候"判断这个项目能不能赶得上 deadline</p>
                 <p><strong>核心变量</strong>：一次实验的 run time（cycle time）</p>
                 <p><strong>ISTP 做</strong>：跑一个 mini baseline（比如 2min–5min）、给出模型大小、数据规模信息</p>
-                <p><strong>AI 做</strong>：根据 mini-run 推断 full-run 时间、根据 grid 计算实验总耗时、判断 project 是否在 deadline 内可行、列出 "必须做" vs "可选" 实验</p>
+                <p><strong>AI 做</strong>：根据 mini-run 推断 full-run 时间、根据 grid 计算实验总耗时、判断 project 是否在 deadline 内可行、列出 "必须做"
+                    vs "可选" 实验</p>
             </div>
 
             <div class="case-study">
                 <h4>Stage 1：Idea Validation（AI 结构化验证）</h4>
                 <p><strong>目标</strong>：最低成本验证 idea 是否 publishable</p>
                 <p><strong>ISTP</strong>：给出问题定义、提出目标、直觉、动机</p>
-                <p><strong>AI</strong>：检索类似工作、判断 novelty space、找出 potential contribution、预估可能的审稿人反对点、提供 alternative formulations、给出最适合的 venue</p>
+                <p><strong>AI</strong>：检索类似工作、判断 novelty space、找出 potential contribution、预估可能的审稿人反对点、提供 alternative
+                    formulations、给出最适合的 venue</p>
             </div>
 
             <div class="case-study">
                 <h4>Stage 2：Skeleton Fill（AI 填充 80% 框架）</h4>
                 <p><strong>目标</strong>：在毫无实验的情况下，生成"第一版草稿"</p>
                 <p><strong>ISTP</strong>：写 skeleton、给出方法结构（模块树）、给出 intuition 图草稿</p>
-                <p><strong>AI</strong>：写 related work、从 skeleton 自动写出 method section 初稿、生成 introduction、生成 LaTeX 模板 + 引用结构、为 experiments 生成 placeholder、填充 ablation、analysis 的占位段落</p>
+                <p><strong>AI</strong>：写 related work、从 skeleton 自动写出 method section 初稿、生成 introduction、生成 LaTeX 模板 +
+                    引用结构、为 experiments 生成 placeholder、填充 ablation、analysis 的占位段落</p>
                 <p><em>这时你的论文已经可以生成 PDF（虽然不完整）。这会极大提升 ISTP 的 Se 动力，让任务进入流动状态。</em></p>
             </div>
 
@@ -738,19 +814,23 @@
                 <h4>Stage 3：Baseline Experiments（ISTP 负责验证核心）</h4>
                 <p><strong>目标</strong>：验证 idea 有无 signal；不需要完美</p>
                 <p><strong>ISTP</strong>：实现最小可运行版本的 method、跑 1–2 个 sanity-check baseline、记录小规模实验结果、观察趋势</p>
-                <p><strong>AI</strong>：把 baseline 结果转成文字描述、自动生成图表、caption、自动写 result draft、清理 baseline code（make it reproducible）</p>
+                <p><strong>AI</strong>：把 baseline 结果转成文字描述、自动生成图表、caption、自动写 result draft、清理 baseline code（make it
+                    reproducible）</p>
             </div>
 
             <div class="case-study">
                 <h4>Stage 4：Systematic Experiments（ISTP × AI 共同 build codebase）</h4>
                 <p><strong>目标</strong>：构建 full experimental framework</p>
-                <p><strong>ISTP</strong>：设计 module-based codebase、撰写核心模型逻辑、定义 registry、config、制作 pipeline 的骨架、列出 grid search 实验矩阵</p>
-                <p><strong>AI</strong>：扩展 code skeleton → 完整 framework、生成 glue code（训练器、评估器等）、生成 config 文件、写 experiment runner、自动生成表格、图表、写 "Experiment Section Draft"</p>
+                <p><strong>ISTP</strong>：设计 module-based codebase、撰写核心模型逻辑、定义 registry、config、制作 pipeline 的骨架、列出 grid
+                    search 实验矩阵</p>
+                <p><strong>AI</strong>：扩展 code skeleton → 完整 framework、生成 glue code（训练器、评估器等）、生成 config 文件、写 experiment
+                    runner、自动生成表格、图表、写 "Experiment Section Draft"</p>
             </div>
 
             <div class="case-study">
                 <h4>Stage 5：Final Writing（AI 写 80%，ISTP 做 Ti-polish）</h4>
-                <p><strong>AI</strong>：统一写 introduction、abstract、conclusion、完整扩展 related work、写 supplementary、写 reference section、做全文 consistency check、给出句法与风格修正、合并所有实验段落</p>
+                <p><strong>AI</strong>：统一写 introduction、abstract、conclusion、完整扩展 related work、写 supplementary、写
+                    reference section、做全文 consistency check、给出句法与风格修正、合并所有实验段落</p>
                 <p><strong>ISTP</strong>：通读一遍、修正核心 insight 的逻辑、优化方法图、改进关键论证、删除 AI 生成的冗余、做最终 polish</p>
             </div>
 
@@ -778,7 +858,8 @@
                     <tr>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Skeleton Fill</td>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-color);">skeleton、直觉图</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-color);">写 method/RW/intro、latex框架</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-color);">写 method/RW/intro、latex框架
+                        </td>
                     </tr>
                     <tr>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Baseline Exp.</td>
@@ -788,7 +869,8 @@
                     <tr>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Codebase</td>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-color);">核心逻辑、架构设计</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-color);">glue code、configs、runner</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-color);">glue code、configs、runner
+                        </td>
                     </tr>
                     <tr>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Systematic Exp.</td>
@@ -823,20 +905,51 @@
             </div>
         </section>
 
+        <section id="podcasts">
+            <h2>8. Podcasts (Audio Resources)</h2>
+            <p>这里有两个专门为 ISTP-A 准备的音频内容，可以在通勤或运动时收听。</p>
+
+            <div class="audio-player-container">
+                <div class="audio-info">
+                    <span class="audio-title">Productivity for the Logical Action Thinker</span>
+                    <span class="audio-subtitle">专为逻辑行动型思考者设计的生产力指南</span>
+                </div>
+                <audio controls>
+                    <source src="podcasts/Productivity_for_the_Logical_Action_Thinker.m4a" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="audio-player-container">
+                <div class="audio-info">
+                    <span class="audio-title">ISTP-A Managing Long Term Projects</span>
+                    <span class="audio-subtitle">ISTP-A 如何管理长期项目</span>
+                </div>
+                <audio controls>
+                    <source src="podcasts/ISTP_A_Managing_Long_Term_Projects.m4a" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </section>
+
         <section id="appendix">
             <h2>附录：应用案例集</h2>
 
-            <p>以下案例展示了如何将 ISTP-A 行为操作系统应用于不同类型的任务中。每个案例都遵循相同的 BOS 框架（Baseline → Structure → Modules → Pipeline → Snapshot），但根据任务特性进行了具体化调整。</p>
+            <p>以下案例展示了如何将 ISTP-A 行为操作系统应用于不同类型的任务中。每个案例都遵循相同的 BOS 框架（Baseline → Structure → Modules → Pipeline →
+                Snapshot），但根据任务特性进行了具体化调整。</p>
         </section>
 
         <section id="case1">
             <h3>案例一：学术论文写作（CS Conference Paper）</h3>
 
-            <p>撰写学术论文对于 ISTP 来说最大的挑战在于结构庞大、前置不确定性高、需要长期推进且短期内很难看到最终成果。当 Ti 面对未定义的全局结构时，容易陷入不断重写大纲与反复推翻自己设想的循环；而 Se 又无法从中找到明确可操作的起点。</p>
+            <p>撰写学术论文对于 ISTP 来说最大的挑战在于结构庞大、前置不确定性高、需要长期推进且短期内很难看到最终成果。当 Ti 面对未定义的全局结构时，容易陷入不断重写大纲与反复推翻自己设想的循环；而 Se
+                又无法从中找到明确可操作的起点。</p>
 
             <div class="case-study">
                 <h4>Baseline：丑但完整的论文骨架</h4>
-                <p>在 ISTP-A 的行为操作系统中，论文写作必须从 Baseline 开始，而不是从"写得漂亮"开始。Baseline 是一份"丑但完整"的论文骨架。它可以只是一个 LaTeX 模板，包含 Abstract、Introduction、Related Work、Method、Experiments、Results、Discussion 与 Conclusion，每个部分只写一句话描述意图即可。同时，你可以预留实验结果的占位图、伪代码的位置与公式位置。只要骨架能编译成 PDF，你就已经解除了最关键的心理阻力。</p>
+                <p>在 ISTP-A 的行为操作系统中，论文写作必须从 Baseline 开始，而不是从"写得漂亮"开始。Baseline 是一份"丑但完整"的论文骨架。它可以只是一个 LaTeX 模板，包含
+                    Abstract、Introduction、Related Work、Method、Experiments、Results、Discussion 与
+                    Conclusion，每个部分只写一句话描述意图即可。同时，你可以预留实验结果的占位图、伪代码的位置与公式位置。只要骨架能编译成 PDF，你就已经解除了最关键的心理阻力。</p>
             </div>
 
             <h4>Structure：细化章节结构</h4>
@@ -849,7 +962,8 @@
             <p>结构不需要完美，但必须存在。</p>
 
             <h4>Modules：可执行的小任务</h4>
-            <p>Modules 阶段中，你将论文拆解为一个个可执行的小任务。一个模块可以是"写一段 Related Work"，也可以是"完成主实验表格的填充"或"画出方法的框架图"。这些模块都可以在相对短的时间里推进，从而为 Se 提供即时成就感。</p>
+            <p>Modules 阶段中，你将论文拆解为一个个可执行的小任务。一个模块可以是"写一段 Related Work"，也可以是"完成主实验表格的填充"或"画出方法的框架图"。这些模块都可以在相对短的时间里推进，从而为
+                Se 提供即时成就感。</p>
 
             <h4>Pipeline：每周推进节奏</h4>
             <p>Pipeline 规定了你推进论文的节奏。与其设定每天写若干页文字，不如设定每周完成两个到三个模块。这样，你既不会被整体任务压垮，也能在数周到数月的时间里持续看到论文逐渐成型。</p>
@@ -865,14 +979,17 @@
 
             <div class="case-study">
                 <h4>Baseline：最小工作流</h4>
-                <p>因此，构建代码框架同样需要从 Baseline 开始。Baseline 只需要实现最小工作流，例如一个 toy dataset、一个简单模型、一个最小训练循环。只要能在命令行中跑通，即使结构丑陋，它已经完成 ISTP 最关键的一步：启动势能。</p>
+                <p>因此，构建代码框架同样需要从 Baseline 开始。Baseline 只需要实现最小工作流，例如一个 toy
+                    dataset、一个简单模型、一个最小训练循环。只要能在命令行中跑通，即使结构丑陋，它已经完成 ISTP 最关键的一步：启动势能。</p>
             </div>
 
             <h4>Structure：规划目录结构</h4>
-            <p>在 Structure 阶段，你才规划目录结构，例如 models、datasets、trainers、utils 与 scripts。每个目录的存在都应有其"边界意义"，而不是提前填入复杂逻辑。在这一阶段，你只建立骨架，不写抽象基类、不优化性能、不设计全局模式。结构越轻，你越容易进入下一步。</p>
+            <p>在 Structure 阶段，你才规划目录结构，例如 models、datasets、trainers、utils 与
+                scripts。每个目录的存在都应有其"边界意义"，而不是提前填入复杂逻辑。在这一阶段，你只建立骨架，不写抽象基类、不优化性能、不设计全局模式。结构越轻，你越容易进入下一步。</p>
 
             <h4>Modules：独立开发功能</h4>
-            <p>Modules 阶段则让每个功能被独立开发。以模型为例，你可以编写单独的 simple_cnn.py 或 transformer.py，并在 Jupyter Notebook 内自测模型的 forward 行为。这些模块一旦自测通过，才进入系统层的 registry。模块独立、边界明确，是 ISTP 避免系统混乱的关键。</p>
+            <p>Modules 阶段则让每个功能被独立开发。以模型为例，你可以编写单独的 simple_cnn.py 或 transformer.py，并在 Jupyter Notebook 内自测模型的 forward
+                行为。这些模块一旦自测通过，才进入系统层的 registry。模块独立、边界明确，是 ISTP 避免系统混乱的关键。</p>
 
             <h4>Pipeline：配置驱动系统</h4>
             <p>Pipeline 最后通过 config 文件驱动整个系统，使"添加一次实验"变成"添加一份配置"。你不需要为每个实验写新的脚本，而只要复制修改一份配置文件。</p>
@@ -884,15 +1001,18 @@
         <section id="case3">
             <h3>案例三：求职（MLE / AE / Research Engineer）</h3>
 
-            <p>求职过程本质上是一个多阶段、多模块的系统工程，而非一次性的行动。ISTP-A 在求职中容易出现两个问题：第一是 Ti 想要准备得特别完善才愿意开始；第二是 Se 因缺乏即时反馈而丢失动力。因此，在求职中，Baseline 的重要性比很多任务都更高。</p>
+            <p>求职过程本质上是一个多阶段、多模块的系统工程，而非一次性的行动。ISTP-A 在求职中容易出现两个问题：第一是 Ti 想要准备得特别完善才愿意开始；第二是 Se
+                因缺乏即时反馈而丢失动力。因此，在求职中，Baseline 的重要性比很多任务都更高。</p>
 
             <div class="case-study">
                 <h4>Baseline：可投递的简历</h4>
-                <p>求职的 Baseline 通常包括一个最基础的可投递简历，即便它并不完美，也应能够在五分钟内修改并投出。一旦简历基本可用，你就自然跨过了 Ti 的高门槛审查，同时也让 Se 感受到"这件事已经开始流动"。此时你已经从"求职还没开始"变成"求职系统已上线"。</p>
+                <p>求职的 Baseline 通常包括一个最基础的可投递简历，即便它并不完美，也应能够在五分钟内修改并投出。一旦简历基本可用，你就自然跨过了 Ti 的高门槛审查，同时也让 Se
+                    感受到"这件事已经开始流动"。此时你已经从"求职还没开始"变成"求职系统已上线"。</p>
             </div>
 
             <h4>Structure：明确求职方向</h4>
-            <p>Structure 阶段对应于对求职方向的明确化。这并不是要求你确定一生的职业，而是建立一个求职配置，例如 MLE、AE 或 Research Engineer 的技能要求、岗位类型与目标公司范围。你可以列出目标城市、公司规模（大厂 / 中型 / 初创）、技术栈偏好等。Structure 的意义并非限制，而是让 Ti 不会在无边界的可能性空间里迷失。</p>
+            <p>Structure 阶段对应于对求职方向的明确化。这并不是要求你确定一生的职业，而是建立一个求职配置，例如 MLE、AE 或 Research Engineer
+                的技能要求、岗位类型与目标公司范围。你可以列出目标城市、公司规模（大厂 / 中型 / 初创）、技术栈偏好等。Structure 的意义并非限制，而是让 Ti 不会在无边界的可能性空间里迷失。</p>
 
             <h4>Modules：技能与准备模块</h4>
             <p>Modules 则包括技能补全模块、项目模块、STAR 行为面试模块、投递模块与 mock 面试模块等。这些模块都是具体的、可在二十到四十分钟内推进的小任务，例如：</p>
@@ -914,18 +1034,22 @@
         <section id="case4">
             <h3>案例四：健身（Fitness System）</h3>
 
-            <p>健身看似与其他知识工作不同，但对 ISTP-A 来说，健身最重要的机制依然来自 Se 的即时反馈与 Te 的可执行性。ISTP 不适合依赖刚性的训练计划，也不适合每天都做同一套例行公事。健身应被视为由一组可调用模块构成的系统。</p>
+            <p>健身看似与其他知识工作不同，但对 ISTP-A 来说，健身最重要的机制依然来自 Se 的即时反馈与 Te 的可执行性。ISTP
+                不适合依赖刚性的训练计划，也不适合每天都做同一套例行公事。健身应被视为由一组可调用模块构成的系统。</p>
 
             <div class="case-study">
                 <h4>Baseline：五分钟动作</h4>
-                <p>健身的 Baseline 是一个可执行的五分钟动作，例如十个俯卧撑、十五个深蹲或一分钟跑步。这些动作的目的不是训练效果本身，而是激活 Se，从而消除任务启动的阻力。只要开始做了，哪怕是最小动作，你就有更高的概率自然延展成完整模块。</p>
+                <p>健身的 Baseline 是一个可执行的五分钟动作，例如十个俯卧撑、十五个深蹲或一分钟跑步。这些动作的目的不是训练效果本身，而是激活
+                    Se，从而消除任务启动的阻力。只要开始做了，哪怕是最小动作，你就有更高的概率自然延展成完整模块。</p>
             </div>
 
             <h4>Structure：训练模块分类</h4>
-            <p>Structure 对应于训练模块的分类，包括 Push、Pull、Legs、Core、Cardio 与 Mobility。明确这些类别即可，无需提前设计具体的训练组合或周期化计划。结构越轻，灵活性越高，你越不会出于反感而拒绝执行。</p>
+            <p>Structure 对应于训练模块的分类，包括 Push、Pull、Legs、Core、Cardio 与
+                Mobility。明确这些类别即可，无需提前设计具体的训练组合或周期化计划。结构越轻，灵活性越高，你越不会出于反感而拒绝执行。</p>
 
             <h4>Modules：独立训练单元</h4>
-            <p>Modules 则是每个训练模块本身，例如一个包含三个动作、持续十五分钟的 Push 模块，或一组十分钟的核心训练。每个模块都独立，不依赖于连续日程，因此你可以在任何一天选择一个模块执行，不需要计算"今天是不是腿日"。模块越短、越具体，越容易执行，越 match ISTP 的行动风格。</p>
+            <p>Modules 则是每个训练模块本身，例如一个包含三个动作、持续十五分钟的 Push
+                模块，或一组十分钟的核心训练。每个模块都独立，不依赖于连续日程，因此你可以在任何一天选择一个模块执行，不需要计算"今天是不是腿日"。模块越短、越具体，越容易执行，越 match ISTP 的行动风格。</p>
 
             <h4>Pipeline：每周完成 3-5 个模块</h4>
             <p>Pipeline 则要求你每周完成三到五个模块。无论是哪一天，只要你挑一个模块完成，系统就处于活跃状态，不会完全停摆。</p>
@@ -937,11 +1061,13 @@
         <section id="case5">
             <h3>案例五：PhD Thesis（大型长期项目）</h3>
 
-            <p>博士论文是一个典型的长期、巨大且结构复杂的任务，因此非常容易触发 ISTP 的分析瘫痪。Ti 会不断推翻论文结构、怀疑自己的贡献、反复修正框架，而缺乏即时反馈的特性又会使 Se 无法提供动力。因此，写论文最重要的不是思考，而是尽可能快地完成一个 Baseline。</p>
+            <p>博士论文是一个典型的长期、巨大且结构复杂的任务，因此非常容易触发 ISTP 的分析瘫痪。Ti 会不断推翻论文结构、怀疑自己的贡献、反复修正框架，而缺乏即时反馈的特性又会使 Se
+                无法提供动力。因此，写论文最重要的不是思考，而是尽可能快地完成一个 Baseline。</p>
 
             <div class="case-study">
                 <h4>Baseline：能编译的 Thesis Skeleton</h4>
-                <p>Baseline 是一份能编译的 thesis skeleton，它应包含标题、章节结构、占位图片、空白小节与最小的参考文献文件。哪怕内容仍是空白，只要 PDF 能够生成，就已经产生了强大的心理启动效应。这代表"论文已经存在"，而不是"论文还只是一个念头"。</p>
+                <p>Baseline 是一份能编译的 thesis skeleton，它应包含标题、章节结构、占位图片、空白小节与最小的参考文献文件。哪怕内容仍是空白，只要 PDF
+                    能够生成，就已经产生了强大的心理启动效应。这代表"论文已经存在"，而不是"论文还只是一个念头"。</p>
             </div>
 
             <h4>Structure：定义子结构</h4>
@@ -953,7 +1079,8 @@
             </ul>
 
             <h4>Modules：最小任务单元</h4>
-            <p>Modules 允许你每次只处理一个最小任务，例如"画出方法图的初稿"、"撰写 Related Work 的两段"、"写实验设置部分"或"补充一个表格的说明文字"。一个模块小到可以在三十分钟内完成，也能为 Se 提供即时成就感。</p>
+            <p>Modules 允许你每次只处理一个最小任务，例如"画出方法图的初稿"、"撰写 Related Work 的两段"、"写实验设置部分"或"补充一个表格的说明文字"。一个模块小到可以在三十分钟内完成，也能为 Se
+                提供即时成就感。</p>
 
             <h4>Pipeline：每周 2-3 个模块</h4>
             <p>Pipeline 让你以每周两到三个模块的节奏推进论文，同时避免任务在你心中不断膨胀。</p>
@@ -965,11 +1092,13 @@
         <section id="case6">
             <h3>案例六：EB1A/O1 移民申请文书</h3>
 
-            <p>EB1A 或 O1 的文书任务复杂、材料繁多、跨越多个文档，并且需要同时管理推荐信、Exhibits、Petition Letter 与时间线。对于 ISTP-A，这类任务最危险的部分是庞大与模糊：Ti 容易因为边界不清而陷入重写结构、搜集材料却不整合的循环。因此，文书写作格外需要遵循 BOS 的结构。</p>
+            <p>EB1A 或 O1 的文书任务复杂、材料繁多、跨越多个文档，并且需要同时管理推荐信、Exhibits、Petition Letter 与时间线。对于 ISTP-A，这类任务最危险的部分是庞大与模糊：Ti
+                容易因为边界不清而陷入重写结构、搜集材料却不整合的循环。因此，文书写作格外需要遵循 BOS 的结构。</p>
 
             <div class="case-study">
                 <h4>Baseline：粗略大纲与模板</h4>
-                <p>Baseline 在此情境中是一份 Petition Letter 的粗略大纲、一份推荐信的模板，以及一份 Exhibits 列表。这些文档都可以是极其粗糙的占位内容，只要它们确实存在，就会立即降低任务的不确定性，让整个申请从"没开始"变成"已经上线"。</p>
+                <p>Baseline 在此情境中是一份 Petition Letter 的粗略大纲、一份推荐信的模板，以及一份 Exhibits
+                    列表。这些文档都可以是极其粗糙的占位内容，只要它们确实存在，就会立即降低任务的不确定性，让整个申请从"没开始"变成"已经上线"。</p>
             </div>
 
             <h4>Structure：明确组织方式</h4>
@@ -980,7 +1109,8 @@
             </ul>
 
             <h4>Modules：可短时完成的任务</h4>
-            <p>Modules 包括补写一个 Criterion 的某一段、编写一份推荐信草稿、整理一项证据、准备一个 Exhibit 页面的说明、或是完善时间线中的某一段经历。这些模块都可以在短时间内完成，非常适合利用碎片时间推进。</p>
+            <p>Modules 包括补写一个 Criterion 的某一段、编写一份推荐信草稿、整理一项证据、准备一个 Exhibit
+                页面的说明、或是完善时间线中的某一段经历。这些模块都可以在短时间内完成，非常适合利用碎片时间推进。</p>
 
             <h4>Pipeline：固定推进节奏</h4>
             <p>Pipeline 将文书撰写变成每周的固定推进节奏，例如"本周完成 Criterion 2 的一段与一项 Exhibit 的描述，下周完善 Criterion 3 的结构"等。</p>
@@ -995,4 +1125,5 @@
         </footer>
     </div>
 </body>
+
 </html>
