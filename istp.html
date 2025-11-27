@@ -357,6 +357,55 @@
             }
         }
 
+        /* Resource Links */
+        .resource-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .resource-link {
+            display: flex;
+            align-items: flex-start;
+            padding: 1.25rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .resource-link:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .resource-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+
+        .resource-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .resource-content span {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
         /* ========== Responsive ========== */
         @media (max-width: 768px) {
             .toc-sidebar {
@@ -939,6 +988,71 @@
                 </ol>
                 <p><strong>这是当前时代 ISTP 最强的 paper writing flow。</strong></p>
             </div>
+            <hr style="margin: 3rem 0; border: 0; border-top: 1px solid #eee;">
+
+            <h3>AI 作为 Ti-extension：ISTP 思考能力的外部协同系统</h3>
+
+            <p>在传统的认知模型中，ISTP 的 Ti
+                是一种高度内向的、结构化的、基于逻辑和概念一致性的推理过程。它擅长在清晰、边界明确、变量可控的环境下工作。然而，当问题的规模变大、变量变多、结构模糊不清、路径树分支庞大，或问题本身缺乏良好的“进入点”时，ISTP
+                的 Ti 容易陷入停顿状态：要么难以推进，要么不断推翻推演结果，最终形成典型的 Ti-overload 卡顿。</p>
+
+            <p>这一局限本质上不是智能不足，而是 Ti 本质上是 serial reasoning（串行推理）。它需要一步一步确认前提、假设、推导关系，当路径空间指数膨胀时，ISTP 的单线程 Ti 容易被压垮。过去 ISTP
+                只能用白板、纸笔或长时间独自反思来减轻这种 cognitive load，但效果有限，也极其耗时。</p>
+
+            <p>AI 的出现改变了这一切。现代大型语言模型，特别是在结构化推理、问题拆分、逻辑呈现、树状结构生成、假设管理和概念重塑方面的能力，使得 AI 可以在实践层面承担类似 Ti 的外部协处理器（Ti
+                Co-Processor） 的角色。</p>
+
+            <p>AI 不再只是辅助执行（Te-extension），它正在成为 <strong>辅助思考的延展（Ti-extension）</strong>。这一角色使得 ISTP
+                能够以远低于过去的认知消耗，处理远比过去更复杂、更模糊、更大规模的思维任务。</p>
+
+            <h4>为什么 AI 能成为 Ti extension？（认知机制）</h4>
+            <p>ISTP 的 Ti 持有本质感知；AI 的 reasoning 模块提供多路径展开与结构外化。两者结合，使 ISTP 获得“并行的深度推理能力”。AI 的推理能力具备以下特点，恰好补齐了 Ti 的边缘：</p>
+            <ul>
+                <li>能同时展开多条潜在路径</li>
+                <li>能快速压缩或展开复杂结构</li>
+                <li>能将模糊表达转成结构化文本</li>
+                <li>能自动生成问题树与因果链</li>
+                <li>能高维度、高信息量地重新表述问题</li>
+                <li>能帮助 ISTP 将多种假设外化并并行比较</li>
+                <li>能指出逻辑中的漏洞、不足或矛盾</li>
+                <li>能在推理中实时重新组织信息结构</li>
+            </ul>
+
+            <h4>AI 如何缓解 Ti 的“思维瓶颈”</h4>
+            <p>Ti 容易在问题空间太大、路径太多、条件模糊、想法过于抽象、分支逻辑交错或目标模糊时陷入瓶颈。AI 正好可以在这些情境下接管任务：管理多路径、填补模糊条件、重构问题的
+                framing、建立外化的逻辑树、生成概念地图、自动进行假设审查、提供 alternative assumptions、进行大规模 summary 与结构整理。</p>
+            <p>结果是：ISTP 的 Ti 不再与复杂问题“硬拼”，而是与 AI 共享结构化负载。</p>
+
+            <h4>AI 作为 “外部白板 + 逻辑结构器” 的具体角色</h4>
+            <div class="concept-box">
+                <ul>
+                    <li><strong>The Clarifier（澄清器）</strong>：AI 能把你的混乱想法分类、去重、抽象、排序、找矛盾、找缺失项、转成可执行的结构。类似一个高效的“外部思维整理器”。
+                    </li>
+                    <li><strong>The Decomposer（分解器）</strong>：当问题太大时，AI 帮你拆成 primary modules、secondary
+                        sub-modules、dependencies 和 first actionable step。这对 ISTP 是最关键的，因为 ISTP 的动力来自 “下一步明确”。</li>
+                    <li><strong>The Tree Builder（决策树生成器）</strong>：AI 可以自动生成决策树、结果树、风险树、假设树、方法树。Ti 不必自己展开全空间，只需挑选分支。</li>
+                    <li><strong>The Simulator（推演器）</strong>：AI 可以模拟不同选择的未来、找出关键路径、推断风险点、提供先验判断、指出不可行分支。这给了 ISTP
+                        强烈的“方向清晰感”。</li>
+                    <li><strong>The Reframer（重构器）</strong>：当你“想不明白一个问题”，本质通常是 framing error。AI 可以用 5 种 framing
+                        重述问题、从系统层/用户层/情境层重构、把抽象 insight 变成 operational view。这相当于 Ti 的感知镜面。</li>
+                </ul>
+            </div>
+
+            <h4>Ti × AI 的协同对 ISTP 的意义</h4>
+            <p>在引入 AI 后，ISTP 的思考过程会发生明显转变：</p>
+            <ol>
+                <li><strong>更快进入清晰状态</strong>：过去需要白板和反复推演，现在几分钟就能获得结构化图景。</li>
+                <li><strong>思考压力降低</strong>：Ti 不再独立承受所有推理负荷，mental friction 大幅下降。</li>
+                <li><strong>减少“分析瘫痪”</strong>：AI 提供明确的下一步选项，避免 Ti 在不确定性中卡死。</li>
+                <li><strong>不再害怕大问题</strong>：因为 AI 能自动做拆分与结构化，大范围项目反而更容易管理。</li>
+                <li><strong>更容易维持 momentum</strong>：清晰结构使得 ISTP 可以更快接入 Se → Te 的执行模式。</li>
+                <li><strong>更高质量的 insight</strong>：Ti 可以把更多时间放在“本质问题”而不是“结构管理”上。</li>
+            </ol>
+            <p>最终结果是：ISTP 的思考能力因 AI 而进入“双核并行”状态。Ti 保留深度；AI 负责宽度。深度 × 宽度 → 形成强大的系统级洞察力与执行能力。</p>
+
+            <h4>总结：Ti × AI = ISTP 的 Cognitive Upgrade（认知升级）</h4>
+            <p>AI 对 ISTP 的意义不仅是提升执行力，而是一种认知层面的升级，使 ISTP 进入“多线程 Ti”状态。AI 不再是一个工具，而是一种 <strong>认知增强器（Cognitive
+                    Augmenter）</strong>，让 ISTP 的思考方式跃迁到一个新的层级。</p>
         </section>
 
         <section id="podcasts">
@@ -1036,36 +1150,132 @@
         </section>
 
         <section id="case3">
-            <h3>案例三：求职（MLE / AE / Research Engineer）</h3>
+            <h3>案例三（升级版）：ISTP BOS 求职系统（MLE / AE / Research Engineer / AI Labs）</h3>
 
-            <p>求职过程本质上是一个多阶段、多模块的系统工程，而非一次性的行动。ISTP-A 在求职中容易出现两个问题：第一是 Ti 想要准备得特别完善才愿意开始；第二是 Se
-                因缺乏即时反馈而丢失动力。因此，在求职中，Baseline 的重要性比很多任务都更高。</p>
-
-            <div class="case-study">
-                <h4>Baseline：可投递的简历</h4>
-                <p>求职的 Baseline 通常包括一个最基础的可投递简历，即便它并不完美，也应能够在五分钟内修改并投出。一旦简历基本可用，你就自然跨过了 Ti 的高门槛审查，同时也让 Se
-                    感受到"这件事已经开始流动"。此时你已经从"求职还没开始"变成"求职系统已上线"。</p>
+            <div class="audio-player-container">
+                <div class="audio-info">
+                    <span class="audio-title">ISTP System for Landing Elite AI Jobs</span>
+                    <span class="audio-subtitle">ISTP求职系统</span>
+                </div>
+                <audio controls>
+                    <source src="podcasts/istp/ISTP_System_for_Landing_Elite_AI_Jobs.m4a" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
 
-            <h4>Structure：明确求职方向</h4>
-            <p>Structure 阶段对应于对求职方向的明确化。这并不是要求你确定一生的职业，而是建立一个求职配置，例如 MLE、AE 或 Research Engineer
-                的技能要求、岗位类型与目标公司范围。你可以列出目标城市、公司规模（大厂 / 中型 / 初创）、技术栈偏好等。Structure 的意义并非限制，而是让 Ti 不会在无边界的可能性空间里迷失。</p>
 
-            <h4>Modules：技能与准备模块</h4>
-            <p>Modules 则包括技能补全模块、项目模块、STAR 行为面试模块、投递模块与 mock 面试模块等。这些模块都是具体的、可在二十到四十分钟内推进的小任务，例如：</p>
+            <p>求职不是单次事件，而是一个可持续运行的系统工程。特别是对 ISTP-A 来说，求职中的两大阻力最明显：Ti 阻力（想要“准备到非常完善”才愿意开始）和 Se 阻力（缺乏即时反馈导致动力下降）。因此求职必须
+                BOS 化：降低启动门槛，缩短反馈回路，模块化推进。</p>
+
+            <h4>1. ISTP Ti：为什么 Non-CS PhD → AI Labs 是可行且优质的路径？</h4>
+            <div class="audio-player-container">
+                <div class="audio-info">
+                    <span class="audio-title">Skip Computer Science, Get Elite AI Jobs</span>
+                    <span class="audio-subtitle">跳过计算机科学，拿到顶级 AI 工程师offer</span>
+                </div>
+                <audio controls>
+                    <source src="podcasts/istp/Skip_Computer_Science_Get_Elite_AI_Jobs.m4a" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <p>Ti 不会盲目行动，它需要一套“为什么这条路有效”的结构化论证。依据行业报告，我们总结三条硬逻辑：</p>
             <ul>
-                <li>"把一个项目写成 STAR 格式"</li>
-                <li>"实现一个小型 ML demo"</li>
-                <li>"复习一个 system design 模块"</li>
-                <li>"给一个岗位投五份简历"</li>
+                <li><strong>事实层面</strong>：Labs 并不是只招 CS PhD。Applied Scientist 和 Research Engineer 更看重工程能力而非学位。Non-CS PhD
+                    具备数学底子强 + 工程直觉强 + 研究 rigor 强，这恰好是 frontier labs 最看重的属性。</li>
+                <li><strong>能力匹配层面</strong>：Labs 需要的是“能读懂论文 + 能实现 + 有研究 taste”。Non-CS PhD 具备数学建模、系统调试直觉和抽象能力。若能补上 “现代 ML
+                    工程栈” + “公共输出”，完全具备竞争力。</li>
+                <li><strong>市场层面</strong>：Hiring 的“专业货币”已从学历 → 可验证的产物。Research Scientist 看 publication，Applied Scientist
+                    / Research Engineer 看 public portfolio + open-source projects。</li>
             </ul>
-            <p>每一个模块都有明确的入口点，降低了切入难度。</p>
+            <div class="resource-links">
+                <a href="https://docs.google.com/document/d/10ODU2AJpTWlLWF4ci7thl4tvderzF5OJ6pGCfAr33fw/edit?usp=sharing"
+                    class="resource-link" target="_blank">
+                    <span class="resource-icon">📄</span>
+                    <div class="resource-content">
+                        <strong>Google Doc Report</strong>
+                        <span>An Industry Analysis of Talent Acquisition for AI Research and Applied Scientist
+                            Roles</span>
+                    </div>
+                </a>
+                <a href="https://notebooklm.google.com/notebook/b63941b3-50f5-4e5d-a7de-8ddc6315029c"
+                    class="resource-link" target="_blank">
+                    <span class="resource-icon">📓</span>
+                    <div class="resource-content">
+                        <strong>NotebookLM Research</strong>
+                        <span>On non-CS PhD for AI Labs</span>
+                    </div>
+                </a>
+                <a href="https://chatgpt.com/share/e/6928cdc8-e12c-8000-a344-b2e4d0f7bb43" class="resource-link"
+                    target="_blank">
+                    <span class="resource-icon">🤖</span>
+                    <div class="resource-content">
+                        <strong>ChatGPT Research</strong>
+                        <span>On non-CS PhD for AI Labs</span>
+                    </div>
+                </a>
+            </div>
 
-            <h4>Pipeline：每周推进核心模块</h4>
-            <p>Pipeline 则是每周推进两个核心模块，例如"改进主项目叙述"和"准备一次 mock 面试"。你不必每天都在求职上投入大量时间，但只要每周持续推进，整个求职系统就始终在运转。</p>
+            <h4>2. AI Labs 的 Hiring 逻辑（ISTP 版本的“系统图”）</h4>
+            <p>Labs 想判断你是否具备：理解论文的能力（Math）、实现论文的能力（Engineering）、批判并提炼方法的能力（Research taste）以及将研究转成应用或 workflow
+                的能力（Application）。</p>
+            <p>实际流程是：Screening（看公共产物）、技术面试（脑中运行模型）、工程面试（代码简洁性）、Applied case（evaluation & workflow）。Labs 不在乎你是不是
+                CS，他们在乎你是否能“用 ML 推动知识前沿”。</p>
 
-            <h4>Snapshot：记录下一步行动</h4>
-            <p>Snapshot 让你永远知道下一次改简历应该从哪一段落开始，而不需要重新校阅整份文档。</p>
+            <h4>3. 为什么我们选择 “Social Presence + Public Artifacts” 作为主策略？</h4>
+            <ul>
+                <li><strong>Hiring 是“弱关系驱动 + 作品集驱动”的市场</strong>：ISTP 不喜欢强社交，而弱社交（X / GitHub）刚好适配：异步 + 可控 + 无能量消耗。</li>
+                <li><strong>Public artifacts 是 Labs 的“专业货币”</strong>：一条 Evolution-of-Attention 的图胜过十条简历 bullet。</li>
+                <li><strong>AI Labs 的 hiring 本质上是一场“注意力竞争”</strong>：社交曝光（presence）带来注意力；公共作品（artifact）转化注意力为职业机会。</li>
+            </ul>
+
+            <h4>4. ISTP BOS：如何把求职变成“可运行的行为操作系统”</h4>
+
+            <div class="case-study">
+                <h4>Baseline：可投递的简历 + 可展示的主项目 MVP</h4>
+                <p>Baseline = 最低可运行系统。ISTP 不需要完美，只需要：1. 一份 5 分钟即可投出的简历；2. 一个可展示的主项目 MVP（Agentic ML Learning
+                    System）。只要这两个完成，你就越过了 Ti 的“完美主义门槛”，给了 Se 一个“系统已启动”的感知。</p>
+            </div>
+
+            <div class="case-study">
+                <h4>Structure：明确求职空间的边界</h4>
+                <p>Structure = 给 Ti 一个“有限状态机”。包含：方向分类（MLE / AE / Research Engineer）、技能图谱（Math → Engineering →
+                    Application）、目标公司层级、技术栈偏好、输出通道。把求职从无限空间 → 有限空间，从而 Ti 愿意行动。</p>
+            </div>
+
+            <div class="case-study">
+                <h4>Modules：可插拔的小任务</h4>
+                <p>拆成 20–40 分钟即可推进的小任务：</p>
+                <ul>
+                    <li><strong>(A) 技能模块</strong>：阅读一个 paper 的 abstract + method、写 20 行最小 PyTorch attention、画一张 diagram。
+                    </li>
+                    <li><strong>(B) 项目模块</strong>：扩展主项目、增加一个 evaluation、可视化一个优化轨迹。</li>
+                    <li><strong>(C) 面试模块</strong>：一个 STAR 故事、一次 system design 小题、半小时 mock。</li>
+                    <li><strong>(D) 投递模块</strong>：调整一个岗位描述的关键词、批量投递 5 份、更新 LinkedIn headline。</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h4>Pipeline：让系统持续运行的节奏</h4>
+                <p><strong>Daily Micro Pipeline (75-min Loop)</strong>：15–25 min 弱社交 + 20 min paper insight + 15 min
+                    mini code + 10–15 min artifact。保证每天系统都推进一点（无压力）。</p>
+                <p><strong>Weekly Pipeline</strong>：每周只做两件核心事——一个模块推进（例如：主项目新组件）+ 一次面试准备（mock / STAR / system
+                    design）。这个节奏非常稳定，低压力但高产出。</p>
+            </div>
+
+            <div class="case-study">
+                <h4>Snapshot：永远知道“下一步从哪里开始”</h4>
+                <p>Snapshot = “下一步行动的入口点”。例如：简历下一次修改从“项目二的 impact line”开始；项目 attention 的图还差两步；面试下次 mock 练“LLM latency
+                    pipeline”。Snapshot 避免每次打开任务都要重新加载上下文。</p>
+            </div>
+
+            <h4>5. 每日与每周任务量（ISTP 版本的任务预算模型）</h4>
+            <div class="concept-box">
+                <p><strong>Daily: 75–90 分钟（微循环）</strong>：能量消耗极低；可每天持续一年以上。</p>
+                <p><strong>Weekly: 3–5 小时（核心推进）</strong>：核心项目推进 (1–2h) + 面试准备 (1h) + 投递 (30–45 min) + Review。</p>
+            </div>
+
+            <p><strong>总结</strong>：把求职变成一个低负担、高可控、持续产出的系统。它满足 Ti 的逻辑需求、Se 的反馈需求、实际求职市场的 portfolio 需求，以及 Labs hiring 的
+                taste 需求。这是目前最适合 Non-CS PhD 的 AI 求职模式。</p>
         </section>
 
         <section id="case4">
